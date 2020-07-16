@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 
-export default class exerciseList extends Component {
+export default class test extends Component {
 
 
     componentDidMount = () => {
