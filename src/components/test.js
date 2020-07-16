@@ -12,8 +12,8 @@ export default class exerciseList extends Component {
     render() {
         return (
             <div>
-                <p>{this.state?.data.name}</p>
-                <p>{this.state?.data.age}</p>
+                <p>name: {this.state?.data.name}</p>
+                <p>age: {this.state?.data.age}</p>
             </div>
         )
     }
