@@ -6,40 +6,35 @@ export default class nav extends React.Component {
   render() {
     return (
       <div className="nav">
-        <Navbar className="is-danger">
+        <Navbar className="is-primary has-text-black">
           <Navbar.Container position="end">
-            <Navbar.Item href="/">
+            <Navbar.Brand href="/">
               <h2>Roast me!</h2>
-            </Navbar.Item>
+              <Navbar.Burger />
+            </Navbar.Brand>
           </Navbar.Container>
-
           <Navbar.Menu>
             <Navbar.Container>
               <Navbar.Item renderAs="div" href="#">
-                <Link className="nav-link" to="/test">
-                  TEST
-                </Link>
-              </Navbar.Item>
-              <Navbar.Item renderAs="div" href="#">
-                <Link className="nav-link" to="/">
+                <Link className="nav-link has-text-black" to="/">
                   Home
                 </Link>
               </Navbar.Item>
 
               <Navbar.Item renderAs="div" href="#">
-                <Link className="nav-link" to="/cookbook">
+                <Link className="nav-link has-text-black" to="/cookbook">
                   Cookbook
                 </Link>
               </Navbar.Item>
 
               <Navbar.Item renderAs="div" href="#">
-                <Link className="nav-link" to="/dashboard">
+                <Link className="nav-link has-text-black" to="/dashboard">
                   Dashboard
                 </Link>
               </Navbar.Item>
 
               <Navbar.Item renderAs="div" href="#">
-                <Link className="nav-link" to="/profile">
+                <Link className="nav-link has-text-black" to="/profile">
                   Profile
                 </Link>
               </Navbar.Item>
@@ -47,12 +42,12 @@ export default class nav extends React.Component {
               <Navbar.Item renderAs="div" href="#">
                 <div>
                   <p>
-                    <Link className="nav-link" to="/login">
+                    <Link className="nav-link has-text-black" to="/login">
                       Log in
                     </Link>
                   </p>
                   <p>
-                    <Link className="nav-link" to="/signup">
+                    <Link className="nav-link has-text-black" to="/signup">
                       Sign up
                     </Link>
                   </p>
