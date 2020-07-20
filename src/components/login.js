@@ -1,12 +1,18 @@
 import React, { Component } from "react";
-// import {
-//   Container,
-//   Button,
-//   Field,
-//   Control,
-//   Label,
-//   Input,
-// } from "react-bulma-components/dist";
+import {
+  Container,
+  Panel,
+  Hero,
+  Heading,
+  Columns,
+  Button,
+  Field,
+  Control,
+  Label,
+  Input,
+  Form,
+} from "react-bulma-components";
+import RandomPic, { RandomPicUrl } from "../shared/corePics";
 
 export default class login extends Component {
   constructor(props) {
@@ -28,51 +34,55 @@ export default class login extends Component {
   render() {
     return (
       <>
-        <div className="container has-text-centered">
-          <div className="hero">
-            <h1 className="title">Roastme!</h1>
-            <h2 className="subtitle">A social cookbook.</h2>
-            <figure className="image"></figure>
-            {/* example from https://bulma.io/documentation/form/general/ */}
-          </div>
-          <div className="panel">
-            <div className="panel-heading">Log in to Roastme!</div>
-            <div className="field">
-              <label type="email" className="label">
-                Email address
-              </label>
-              <div className="control">
-                <input
-                  type="text"
-                  className="is-large"
-                  placeholder="Miguel Sanchez"
-                />
-              </div>
-            </div>
-            <div className="field">
-              <label className="label">Password</label>
-              <div className="control">
-                <input
-                  type="password"
-                  className="is-large"
-                  placeholder="jigglypuff1989"
-                />
-              </div>
-            </div>
-            <div className="field">
-              <div className="control">
-                <input type="submit" className="button is-link" />
-              </div>
-            </div>
-          </div>
-          {/* <Field> */}
-          {/* <Control> */}
-          {/* <Label>Name</Label> */}
-          {/* <Input name="name" value={form.name} onChange={update} />
-              <Input name="name" value="test" onChange={this.update()} /> */}
-          {/* </Control>  */}
-          {/* </Field> */}
-        </div>
+        <Container className="has-text-centered">
+          <Hero
+            size="large"
+            color="dark"
+            style={{
+              backgroundImage: `url('${RandomPicUrl()}')`,
+              backgroundSize: "cover",
+              textShadow: "2px 2px #00000080",
+            }}
+          >
+            <Columns.Column size={10} color="#00000080">
+            <Heading size={2} renderAs="h1">Roastme!</Heading>
+            <Heading subtitle renderAs="h2">
+              A social cookbook.
+            </Heading>
+              {/* <RandomPic /> */}
+              <Heading size={4}>Log in to Roastme!</Heading>
+              <Form.Field>
+                <Form.Label type="email">
+                  Email address
+                </Form.Label>
+                <Form.Control>
+                  <Form.Input
+                    type="text"
+                    className="is-large"
+                    placeholder="miguel-sanchez@springfield.com"
+                  />
+                </Form.Control>
+              </Form.Field>
+              <Form.Field>
+                <Form.Label type="password">
+                  Password
+                </Form.Label>
+                <Form.Control>
+                   <Form.Input
+                    type="password"
+                    className="is-large"
+                    placeholder="jigglypuff1989"
+                  />
+                </Form.Control>
+              </Form.Field>
+              <Form.Field>
+                <Form.Control>
+                  <Button type="primary" className="button is-link">Submit</Button>
+                </Form.Control>
+              </Form.Field>
+            </Columns.Column>
+          </Hero>
+        </Container>
       </>
     );
   }

@@ -1,22 +1,21 @@
 @font-face {
-  font-family: 'Palanquin', sans-serif;
-  src: url('https://fonts.googleapis.com/css2?family=Palanquin&display=swap');
+  font-family: "Palanquin", sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Palanquin&display=swap");
   font-weight: normal;
 }
 
-$family-sans-serif: 'Palanquin', sans-serif;
+$family-sans-serif: "Palanquin", sans-serif;
 
-
-
-@import '../../node_modules/bulma/sass/utilities/_all.sass';
-@import '../../node_modules/bulma/sass/base/_all.sass';
-@import '../../node_modules/bulma/sass/elements/button.sass';
-@import '../../node_modules/bulma/sass/elements/container.sass';
-@import '../../node_modules/bulma/sass/elements/form.sass';
-@import '../../node_modules/bulma/sass/elements/title.sass';
-@import '../../node_modules/bulma/sass/components/navbar.sass';
-@import '../../node_modules/bulma/sass/layout/hero.sass';
-@import '../../node_modules/bulma/sass/layout/section.sass';
+@import "~react-bulma-components/src/index.sass";
+@import "../../node_modules/bulma/sass/utilities/_all.sass";
+@import "../../node_modules/bulma/sass/base/_all.sass";
+@import "../../node_modules/bulma/sass/elements/button.sass";
+@import "../../node_modules/bulma/sass/elements/container.sass";
+@import "../../node_modules/bulma/sass/elements/form.sass";
+@import "../../node_modules/bulma/sass/elements/title.sass";
+@import "../../node_modules/bulma/sass/components/navbar.sass";
+@import "../../node_modules/bulma/sass/layout/hero.sass";
+@import "../../node_modules/bulma/sass/layout/section.sass";
 
 html {
   font-size: 18px;
