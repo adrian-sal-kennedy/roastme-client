@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { Card, Media, Content, Heading } from 'react-bulma-components';
 
 export default class recipeCard extends React.Component {
-    
     render() {
         return(
             <div className="general-container">
@@ -32,6 +31,5 @@ export default class recipeCard extends React.Component {
                 </div>
             </div>
         )
-
     }
 }
