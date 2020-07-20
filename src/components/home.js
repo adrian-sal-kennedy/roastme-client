@@ -1,17 +1,27 @@
 import React, { Component } from "react";
 import RandomPic from "../shared/corePics";
+import { Heading, Hero, Container, Columns, Content } from "react-bulma-components";
 // import Card from '../shared/card';
 
 export default class home extends Component {
   render() {
     return (
-      <section className="hero">
-        <h1 className="title">Roastme!</h1>
-        <h2 className="subtitle">A social cookbook.</h2>
-        <div className="hero-body">
+      <Hero className="has-text-centered">
+        <Columns.Column>
+          <Heading className="bd-notification" renderAs="h1" weight="bold">Roastme!</Heading>
+          <Heading subtitle renderAs="h2" weight="bold">
+            A social cookbook.
+          </Heading>
+        </Columns.Column>
+        <Columns.Column>
+          <Content renderAs="p">
+            Find, create, share and modify your favourite recipes.
+          </Content>
+        </Columns.Column>
+        <Columns.Column>
           <RandomPic />
-        </div>
-      </section>
-    )
+        </Columns.Column>
+      </Hero>
+    );
   }
 }

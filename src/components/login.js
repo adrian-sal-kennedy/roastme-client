@@ -28,7 +28,7 @@ export default class login extends Component {
   render() {
     return (
       <>
-        <div className="container">
+        <div className="container has-text-centered">
           <div className="hero">
             <h1 className="title">Roastme!</h1>
             <h2 className="subtitle">A social cookbook.</h2>
