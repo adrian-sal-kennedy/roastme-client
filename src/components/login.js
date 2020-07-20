@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import {
-  Container,
-  Button,
-  Field,
-  Control,
-  Label,
-  Input,
-} from "react-bulma-components/dist";
+// import {
+//   Container,
+//   Button,
+//   Field,
+//   Control,
+//   Label,
+//   Input,
+// } from "react-bulma-components/dist";
 
 export default class login extends Component {
   constructor(props) {
@@ -29,10 +29,12 @@ export default class login extends Component {
     return (
       <>
         <div className="container">
-          <h1 className="title">Roastme!</h1>
-          <h2 className="subtitle">A social cookbook.</h2>
-          <div>{/* put a nice pic here, or even a random nice pic */}</div>
-          {/* example from https://bulma.io/documentation/form/general/ */}
+          <div className="hero">
+            <h1 className="title">Roastme!</h1>
+            <h2 className="subtitle">A social cookbook.</h2>
+            <figure className="image"></figure>
+            {/* example from https://bulma.io/documentation/form/general/ */}
+          </div>
           <div className="panel">
             <div className="panel-heading">Log in to Roastme!</div>
             <div className="field">
@@ -40,7 +42,11 @@ export default class login extends Component {
                 Email address
               </label>
               <div className="control">
-                <input type="text" className="is-large" placeholder="Miguel Sanchez" />
+                <input
+                  type="text"
+                  className="is-large"
+                  placeholder="Miguel Sanchez"
+                />
               </div>
             </div>
             <div className="field">
