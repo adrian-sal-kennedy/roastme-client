@@ -3,9 +3,9 @@ import { Route, Switch } from "react-router-dom";
 // import "react-bulma-components/dist/react-bulma-components.min.css";
 
 import aha from "./test";
-import Home from "./home";
-import Login from "./login";
-import Signup from "./signup";
+import Home from "./Home";
+import Login from "./Login";
+import Signup from "./Signup";
 import Cookbook from "./cookbook";
 import Recipe from "./recipe";
 import Dashboard from "./dashboard";

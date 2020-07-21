@@ -4,7 +4,7 @@ import { Heading, Hero, Container, Content, Columns } from "react-bulma-componen
 // import { Column } from "react-bulma-components/lib/components/columns";
 // import Card from '../shared/card';
 
-export default class home extends Component {
+export default class Home extends Component {
   render() {
     return (
       <Hero className="has-text-centered">
