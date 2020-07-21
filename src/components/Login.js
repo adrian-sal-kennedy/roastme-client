@@ -129,9 +129,7 @@ export default class Login extends Component {
                 </Field>
                 <Field kind="group">
                   <Control>
-                    <Button type="primary" className="button is-link" style={{
-                      margin: "0.75em",
-                    }}>
+                    <Button type="primary" className="button is-link">
                       Submit
                     </Button>
                   </Control>

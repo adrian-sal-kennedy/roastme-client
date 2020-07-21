@@ -4,12 +4,6 @@
   font-weight: normal;
 }
 
-// $primary: hsl(171, 100%, 41%) //bulma turquoise
-
-$primary: rgb(117, 41, 0);
-$info: rgb(255, 206, 180);
-$link: #ffaa7c;
-
 $family-sans-serif: "Palanquin", sans-serif;
 
 @import "~react-bulma-components/src/index.sass";
@@ -22,7 +16,6 @@ $family-sans-serif: "Palanquin", sans-serif;
 @import "../../node_modules/bulma/sass/components/navbar.sass";
 @import "../../node_modules/bulma/sass/layout/hero.sass";
 @import "../../node_modules/bulma/sass/layout/section.sass";
-
 
 html {
   font-size: 18px;
