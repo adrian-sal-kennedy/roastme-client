@@ -4,57 +4,43 @@ import { Link } from "react-router-dom";
 
 export default class nav extends React.Component {
   render() {
+    const { Container, Brand, Burger, Item, Menu } = Navbar;
     return (
       <div className="nav">
-        <Navbar className="is-primary has-text-black">
-          <Navbar.Container position="end">
-            <Navbar.Brand href="/">
+        <Navbar color="primary">
+          <Container position="end">
+            <Brand href="/">
               <h2>Roast me!</h2>
-              <Navbar.Burger />
-            </Navbar.Brand>
-          </Navbar.Container>
-          <Navbar.Menu>
-            <Navbar.Container>
-              <Navbar.Item renderAs="div" href="#">
-                <Link className="nav-link has-text-black" to="/">
-                  Home
-                </Link>
-              </Navbar.Item>
+              <Burger />
+            </Brand>
+          </Container>
+          <Menu>
+            <Container>
+              <Item href="#">
+                <Link to="/">Home</Link>
+              </Item>
 
-              <Navbar.Item renderAs="div" href="#">
-                <Link className="nav-link has-text-black" to="/cookbook">
-                  Cookbook
-                </Link>
-              </Navbar.Item>
+              <Item href="#">
+                <Link to="/cookbook">Cookbook</Link>
+              </Item>
 
-              <Navbar.Item renderAs="div" href="#">
-                <Link className="nav-link has-text-black" to="/dashboard">
-                  Dashboard
-                </Link>
-              </Navbar.Item>
+              <Item href="#">
+                <Link to="/dashboard">Dashboard</Link>
+              </Item>
 
-              <Navbar.Item renderAs="div" href="#">
-                <Link className="nav-link has-text-black" to="/profile">
-                  Profile
-                </Link>
-              </Navbar.Item>
-
-              <Navbar.Item renderAs="div" href="#">
-                <div>
-                  <p>
-                    <Link className="nav-link has-text-black" to="/login">
-                      Log in
-                    </Link>
-                  </p>
-                  <p>
-                    <Link className="nav-link has-text-black" to="/signup">
-                      Sign up
-                    </Link>
-                  </p>
-                </div>
-              </Navbar.Item>
-            </Navbar.Container>
-          </Navbar.Menu>
+              <Item href="#">
+                <Link to="/profile">Profile</Link>
+              </Item>
+            </Container>
+            <Container position="end">
+              <Item>
+                <Link to="/login">Log in</Link>
+              </Item>
+              <Item>
+                <Link to="/signup">Sign up</Link>
+              </Item>
+            </Container>
+          </Menu>
         </Navbar>
       </div>
     );
