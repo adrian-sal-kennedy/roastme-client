@@ -13,7 +13,6 @@ var corePicList = [
 ];
 function RandomPicUrl() {
     const rnd = Math.floor(Math.random() * 3);
-    console.log(corePicList[rnd].url)
     return corePicList[rnd].url
 }
 class RandomPic extends React.Component {

@@ -1,42 +1,48 @@
 import React from "react";
 import { Navbar } from "react-bulma-components";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom"; // Navbar.Link replaces this
 
 export default class nav extends React.Component {
   render() {
-    const { Container, Brand, Burger, Item, Menu } = Navbar;
+    const { Container, Brand, Burger, Item, Menu, Link } = Navbar;
+    console.log(process.env);
     return (
       <Navbar color="primary">
-        <Container position="end">
-          <Brand href="/">
-            <h2>Roast me!</h2>
-            <Burger />
-          </Brand>
-        </Container>
+        <Brand>
+          <Item href="/">Roast me!</Item>
+          <Burger />
+        </Brand>
         <Menu>
           <Container>
-            <Item href="#">
-              <Link to="/">Home</Link>
+            <Item href="/">
+              <Link arrowless={true}>Home</Link>
             </Item>
-
-            <Item href="#">
-              <Link to="/cookbook">Cookbook</Link>
+            <Item href="/cookbook">
+              <Link arrowless={true}>
+                Cookbook
+              </Link>
             </Item>
-
-            <Item href="#">
-              <Link to="/dashboard">Dashboard</Link>
+            <Item href="/dashboard">
+              <Link arrowless={true}>
+                Dashboard
+              </Link>
             </Item>
-
-            <Item href="#">
-              <Link to="/profile">Profile</Link>
+            <Item href="/profile">
+              <Link arrowless={true}>
+                Profile
+              </Link>
             </Item>
           </Container>
           <Container position="end">
-            <Item>
-              <Link to="/login">Log in</Link>
+            <Item href="/login">
+              <Link arrowless={true}>
+                Log in
+              </Link>
             </Item>
-            <Item>
-              <Link to="/signup">Sign up</Link>
+            <Item href="/signup">
+              <Link arrowless={true}>
+                Sign up
+              </Link>
             </Item>
           </Container>
         </Menu>
