@@ -43,7 +43,7 @@ export default class Login extends Component {
       } else {
         const { jwt } = await response.json();
         localStorage.setItem("token", jwt);
-        this.props.history.push("/");
+        this.props.history.push("/secrets");
       }
     } catch (err) {
       this.setState({
