@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import RandomPic from "../shared/corePics";
+// import RandomPic from "../shared/corePics";
 import {
   Heading,
   Hero,
@@ -8,7 +8,7 @@ import {
   Columns,
 } from "react-bulma-components";
 // import { Column } from "react-bulma-components/lib/components/columns";
-// import Card from '../shared/card';
+import Card from '../shared/card';
 
 export default class Home extends Component {
   render() {
@@ -34,7 +34,7 @@ export default class Home extends Component {
           </Content>
         </Hero>
         <Hero className="has-text-centered">
-          <RandomPic />
+          <Card />
         </Hero>
       </Container>
     );
