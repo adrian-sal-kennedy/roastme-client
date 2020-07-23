@@ -25,7 +25,6 @@ export default class Home extends Component {
   render() {
     const recipes = this.state.recipesIndex;
     return (
-      // <Container className="has-text-centered">
       <Container>
         <Section>
           <Box>
