@@ -7,7 +7,6 @@ import {
   Section,
   Container,
   Content,
-  Box,
   Tile,
 } from "react-bulma-components";
 // import { Column } from "react-bulma-components/lib/components/columns";
@@ -27,7 +26,7 @@ export default class Home extends Component {
     return (
       <Container>
         <Section>
-          <Container Color="black">
+          <Container color="black">
             {recipes.map((recipe, idx) => {
               if (idx % 3 === 0) {
                 return (

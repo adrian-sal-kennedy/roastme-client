@@ -1,6 +1,6 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-import { Card, Media, Content, Heading } from 'react-bulma-components';
+// import { Link } from "react-router-dom";
+// import { Card, Media, Content, Heading } from 'react-bulma-components';
 
 export default class postCard extends React.Component {
     
@@ -8,9 +8,10 @@ export default class postCard extends React.Component {
         return(
             <div className="general-container">
                 <div className="card-container">
-                    <Link to="/recipe/1">
+                  stub for "posts" view
+                    {/* <Link to="/recipe/1">
                         <Card>
-                            {/* <Card.Image size="4by3" src="" /> */}
+                            <Card.Image size="4by3" src="" />
                             <Card.Content>
                             <Media>
                                 <Media.Item>
@@ -28,7 +29,7 @@ export default class postCard extends React.Component {
                                 </Card.Footer.Item>
                             </Card.Footer>
                         </Card>
-                    </Link>
+                    </Link> */}
                 </div>
             </div>
         )
