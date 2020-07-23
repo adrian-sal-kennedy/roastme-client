@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-// import "react-bulma-components/dist/react-bulma-components.min.css";
+import "react-bulma-components/dist/react-bulma-components.min.css";
 
 import aha from "./test";
 import Home from "./Home";
@@ -10,7 +10,7 @@ import Cookbook from "./cookbook";
 import Recipe from "./recipe";
 import Dashboard from "./dashboard";
 import Profile from "./profile";
-import Navbar from "../shared/nav";
+import Navbar from "../shared/Nav";
 import User from "./user";
 
 import "../css/app.scss";

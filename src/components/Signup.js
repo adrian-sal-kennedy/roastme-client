@@ -32,30 +32,24 @@ export default class Signup extends Component {
       user: { username, email, password },
     };
     try {
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/signup`,
-        {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/signup`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
+      if (response.status >= 400) {
+        throw new Error("Wrong email or password!");
+      } else {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(body),
-        }
-      );
-      if (response.status >= 400) {
-        throw new Error("Wrong email or password!");
-      } else {
-        const response = await fetch(
-          `${process.env.REACT_APP_BACKEND_URL}/login`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ auth: { email, password } }),
-          }
-        );
-        const { jwt } = await response.json();
+          body: JSON.stringify({ auth: { email, password }}),
+        })
+        const { jwt } = await response.json()
         localStorage.setItem("token", jwt);
         this.props.history.push("/");
       }
@@ -92,7 +86,7 @@ export default class Signup extends Component {
               A social cookbook.
             </Heading>
             {/* <RandomPic /> */}
-            <Heading size={4}>Sign up to Roastme!</Heading>
+            <Heading size={4}>Log in to Roastme!</Heading>
             {errMessage && (
               <Message color="danger">
                 <Message.Header>Error! {errMessage}</Message.Header>
@@ -110,7 +104,7 @@ export default class Signup extends Component {
             >
               <form onSubmit={this.onFormSubmit}>
                 <Field>
-                  <Label type="">Name</Label>
+                  <Label type="username">Name</Label>
                   <Control>
                     <Input
                       type="text"
@@ -156,13 +150,9 @@ export default class Signup extends Component {
                 </Field>
                 <Field kind="group">
                   <Control>
-                    <Button
-                      type="primary"
-                      className="button is-link"
-                      style={{
-                        margin: "0.75em",
-                      }}
-                    >
+                    <Button type="primary" className="button is-link" style={{
+                      margin: "0.75em",
+                    }}>
                       Submit
                     </Button>
                   </Control>
