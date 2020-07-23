@@ -43,7 +43,7 @@ export default class Login extends Component {
       } else {
         const { jwt } = await response.json();
         localStorage.setItem("token", jwt);
-        this.props.history.push("/secrets");
+        this.props.history.push("/");
       }
     } catch (err) {
       this.setState({
@@ -70,7 +70,7 @@ export default class Login extends Component {
             paddingTop: "1rem",
           }}
         >
-          <Column size={10} color="#00000080">
+          <Column size={10} color="dark">
             <Heading size={2} renderAs="h1">
               Roastme!
             </Heading>
@@ -93,10 +93,11 @@ export default class Login extends Component {
                 margin: "2rem",
                 padding: "1rem",
               }}
+              size="auto"
             >
               <form onSubmit={this.onFormSubmit}>
                 <Field>
-                  <Label type="email">Email address</Label>
+                  <Label type="email" color="white"><p className="white">Email address</p></Label>
                   <Control>
                     <Input
                       type="text"
@@ -104,9 +105,6 @@ export default class Login extends Component {
                       id="email"
                       value={email}
                       onChange={this.onInputChange}
-                      style={{
-                        fontSize: "larger",
-                      }}
                     />
                   </Control>
                 </Field>
@@ -119,9 +117,6 @@ export default class Login extends Component {
                       id="password"
                       value={password}
                       onChange={this.onInputChange}
-                      style={{
-                        fontSize: "larger",
-                      }}
                     />
                   </Control>
                 </Field>

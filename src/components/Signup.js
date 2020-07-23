@@ -12,6 +12,7 @@ import { RandomPicUrl } from "../shared/corePics";
 
 export default class Signup extends Component {
   state = {
+    username: "",
     email: "",
     password: "",
     errMessage: "",
@@ -26,9 +27,9 @@ export default class Signup extends Component {
   };
   onFormSubmit = async (event) => {
     event.preventDefault();
-    const { email, password } = this.state;
+    const { username, email, password } = this.state;
     const body = {
-      user: { email, password },
+      user: { username, email, password },
     };
     try {
       const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/signup`, {
@@ -41,9 +42,16 @@ export default class Signup extends Component {
       if (response.status >= 400) {
         throw new Error("Wrong email or password!");
       } else {
-        const { jwt } = await response.json();
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ auth: { email, password }}),
+        })
+        const { jwt } = await response.json()
         localStorage.setItem("token", jwt);
-        this.props.history.push("/secrets");
+        this.props.history.push("/");
       }
     } catch (err) {
       this.setState({
@@ -57,7 +65,7 @@ export default class Signup extends Component {
     const { Column } = Columns;
     //getting around bulma-component import problems
 
-    const { email, password, errMessage } = this.state;
+    const { username, email, password, errMessage } = this.state;
     return (
       <Container className="has-text-centered">
         <Hero
@@ -95,6 +103,21 @@ export default class Signup extends Component {
               }}
             >
               <form onSubmit={this.onFormSubmit}>
+                <Field>
+                  <Label type="username">Name</Label>
+                  <Control>
+                    <Input
+                      type="text"
+                      name="username"
+                      id="username"
+                      value={username}
+                      onChange={this.onInputChange}
+                      style={{
+                        fontSize: "larger",
+                      }}
+                    />
+                  </Control>
+                </Field>
                 <Field>
                   <Label type="email">Email address</Label>
                   <Control>
