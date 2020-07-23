@@ -7,10 +7,8 @@ import {
   Section,
   Container,
   Content,
-  Columns,
   Box,
   Tile,
-  Image,
 } from "react-bulma-components";
 // import { Column } from "react-bulma-components/lib/components/columns";
 import Card from "../shared/altCard";
@@ -32,15 +30,16 @@ export default class Home extends Component {
         <Section>
           <Box>
             {recipes.map((recipe, idx) => {
-              if (idx % 3 == 0) {
+              if (idx % 3 === 0) {
                 return (
-                  <Tile kind="ancestor">
+                  <Tile key={(idx+1)/3} kind="ancestor">
                     {recipes[idx] && <Card recipe={recipe} />}
                     {recipes[idx+1] && <Card recipe={recipes[idx+1]} />}
                     {recipes[idx+2] && <Card recipe={recipes[idx+2]} />}
                   </Tile>
                 );
               } else {
+                return null
               }
             })}
           </Box>

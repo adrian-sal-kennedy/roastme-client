@@ -1,12 +1,9 @@
 import React, { Component } from "react";
 import moment from "moment";
-import {
-  Content,
-  Media,
-  Heading,
-  Columns,
-  Box,
-} from "react-bulma-components/dist";
+import { Content, Heading, Columns, Box } from "react-bulma-components/dist";
+import IngredientList from "../shared/ingredientlist";
+// import Taglist from "../shared/taglist";
+
 // import Card from "../shared/altCard";
 
 export default class recipe extends Component {
@@ -18,7 +15,6 @@ export default class recipe extends Component {
   };
   async componentDidMount() {
     const { id } = this.props.match.params;
-    console.log(id);
     const response = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/recipe/${id}`
     );
@@ -26,11 +22,10 @@ export default class recipe extends Component {
     this.setState({ recipe: recipe });
   }
   render() {
-    const { recipe, ingredients, author, tags } = this.state.recipe;
+    const { recipe, ingredients, author, tags } = this.state?.recipe;
     const createdAt = moment(this.state.recipe.created_at)
       .startOf("hour")
       .fromNow();
-    console.log(this.state.recipe);
     return (
       <Box>
         <Columns breakpoint="mobile">
@@ -39,6 +34,8 @@ export default class recipe extends Component {
               {recipe && <Heading size={3}>{recipe.title}</Heading>}
               {recipe && <Content size="medium">{recipe.blog}</Content>}
               {recipe && <Content size="medium">{author.username}</Content>}
+              {/* {recipe && <Content size="medium">{ingredients.name}</Content>} */}
+              {ingredients && <IngredientList ingredients={ingredients} />}
               <time>{`${createdAt}`}</time>
             </div>
           </Columns.Column>

@@ -46,7 +46,6 @@ export default class Login extends Component {
         this.props.history.push("/");
       }
     } catch (err) {
-      console.log(`fetching error: ${err.message}`)
       this.setState({
         errMessage: err.message,
       });

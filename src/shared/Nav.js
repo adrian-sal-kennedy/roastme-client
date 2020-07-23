@@ -41,14 +41,8 @@ export default class Nav extends React.Component {
       );
     }
   };
-  async componentDidMount() {
-    // this.getToken()
-  }
-  componentDidUpdate() {}
   render() {
     const { Container, Brand, Burger, Menu } = Navbar;
-    var cond = true;
-    console.log(`auth token: ${this.state.token}`);
     return (
       <Navbar color="primary">
         <Brand>

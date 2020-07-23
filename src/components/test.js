@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
 export default class test extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   componentDidMount = () => {
     // fetch('http://220.240.139.117:3000/test')
