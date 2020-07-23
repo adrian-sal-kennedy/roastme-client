@@ -26,6 +26,7 @@ export default class recipe extends Component {
     const createdAt = moment(this.state.recipe.created_at)
       .startOf("hour")
       .fromNow();
+    tags && console.log(tags)
     return (
       <Box>
         <Columns breakpoint="mobile">

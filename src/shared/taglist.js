@@ -6,7 +6,11 @@ export default function TagList(props) {
     <div style={{ display: "flex", flexWrap: "true", width: "min-width" }}>
       {tags.map((tag, idx) => {
         return (
-          <a style={{display:"block"}} key={idx} style={{ marginRight: "5px" }} href={`#${tag}`}>
+          <a
+            style={{ display: "block", marginRight: "5px" }}
+            key={idx}
+            href={`#${tag}`}
+          >
             {tag.tag}
           </a>
         );
