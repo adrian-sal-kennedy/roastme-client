@@ -46,7 +46,7 @@ export default class Nav extends React.Component {
     return (
       <Navbar color="primary">
         <Brand>
-          <Link className="navbar-item" to="/">
+          <Link className="navbar-item roastme" to="/">
             Roast me!
           </Link>
           {/* <Burger className={cond && "is-active"} /> */}

@@ -11,8 +11,8 @@ export default function RecipeCard(props) {
     <Tile size={4}>
       <Tile>
         <Tile kind="parent">
-          <Tile renderAs="article" kind="child" notification color="primary">
-            <Heading>{recipe.title}</Heading>
+          <Tile className="recipe-card" renderAs="article" kind="child" notification>
+            <Heading size={4}>{recipe.title}</Heading>
             <Heading subtitle>{author.username}</Heading>
             <time>{`${createdAt}`}</time>
             <Taglist tags={tags} />

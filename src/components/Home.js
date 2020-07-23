@@ -27,11 +27,11 @@ export default class Home extends Component {
     return (
       <Container>
         <Section>
-          <Box>
+          <Container Color="black">
             {recipes.map((recipe, idx) => {
               if (idx % 3 === 0) {
                 return (
-                  <Tile key={(idx+1)/3} kind="ancestor">
+                  <Tile className="recipe-group" key={(idx+1)/3} kind="ancestor">
                     {recipes[idx] && <Card recipe={recipe} />}
                     {recipes[idx+1] && <Card recipe={recipes[idx+1]} />}
                     {recipes[idx+2] && <Card recipe={recipes[idx+2]} />}
@@ -41,7 +41,7 @@ export default class Home extends Component {
                 return null
               }
             })}
-          </Box>
+          </Container>
           <Hero className="has-text-centered">
             <RandomPic />
           </Hero>

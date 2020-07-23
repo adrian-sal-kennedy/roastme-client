@@ -1,0 +1,15 @@
+@font-face {
+  font-family: "Palanquin", sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Palanquin&display=swap");
+  font-weight: normal;
+}
+
+// $primary: hsl(171, 100%, 41%) //bulma turquoise
+
+$deepbrown: rgb(117, 41, 0);
+
+$primary: $deepbrown;
+$info: rgb(255, 206, 180);
+$link: #ffaa7c;
+
+$family-sans-serif: "Palanquin", sans-serif;

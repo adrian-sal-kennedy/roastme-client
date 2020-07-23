@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import "react-bulma-components/dist/react-bulma-components.min.css";
 
 import aha from "./test";
 import Home from "./Home";
@@ -12,8 +11,7 @@ import Dashboard from "./dashboard";
 import Profile from "./profile";
 import Navbar from "../shared/Nav";
 import User from "./user";
-
-import "../css/app.scss";
+import "react-bulma-components/dist/react-bulma-components.min.css";
 export default class App extends React.Component {
   render() {
     return (
