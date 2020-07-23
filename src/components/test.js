@@ -24,7 +24,7 @@ export default class test extends Component {
     })
     return (
       <div>
-        <p>{recipes || "loading"}</p>
+        {recipes || "loading"}
       </div>
     );
   }
