@@ -69,12 +69,9 @@ export default class Login extends Component {
           backgroundSize: "cover",
           textShadow: "2px 2px #00000080",
         }}
-        // className="is-fluid"
       >
-        {/* <Container className="has-text-centered is-1by1"> */}
         <Container>
-          <Hero color="dark" style={{backgroundColor: "unset"}}>
-            {/* <Column size={10}> */}
+          <Hero className="center-children" color="dark" style={{ backgroundColor: "unset" }}>
             <Hero.Body>
               <Heading size={2} renderAs="h1">
                 Roastme!
@@ -89,20 +86,10 @@ export default class Login extends Component {
                 </Message>
               )}
             </Hero.Body>
-            {/* </Column> */}
           </Hero>
           <Section>
-            <Container>
-              <Column
-                size="two-thirds"
-                // className="is-fluid"
-                style={{
-                  backgroundImage: "unset",
-                  backgroundColor: "#00000080",
-                  borderRadius: "2rem",
-                  padding: "1rem",
-                }}
-              >
+            <Container className="center-children">
+              <Column size="two-thirds" className="login-column">
                 <form onSubmit={this.onFormSubmit}>
                   <Field>
                     <Label type="email">Email address</Label>
@@ -138,6 +125,14 @@ export default class Login extends Component {
                         }}
                       >
                         Submit
+                      </Button>
+                      <Button
+                        className="button is-link"
+                        style={{
+                          margin: "0.75em",
+                        }}
+                      >
+                        Sign up
                       </Button>
                     </Control>
                   </Field>

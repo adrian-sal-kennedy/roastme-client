@@ -6,7 +6,8 @@ import Home from "./Home";
 import Login from "./Login";
 import Signup from "./Signup";
 import Cookbook from "./cookbook";
-import Recipe from "./recipe";
+import Recipe from "./Recipe";
+import NewRecipe from "./NewRecipe";
 import Dashboard from "./dashboard";
 import Profile from "./profile";
 import Navbar from "../shared/Nav";
@@ -23,6 +24,7 @@ export default class App extends React.Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/cookbook" component={Cookbook} />
+          <Route exact path="/recipe/new" component={NewRecipe} />
           <Route exact path="/recipe/:id" component={Recipe} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/profile" component={Profile} />
