@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import Post from '../shared/post';
+import Post from '../shared/Post';
 
 export default class user extends Component {
 

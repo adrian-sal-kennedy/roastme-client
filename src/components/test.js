@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
 export default class test extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   onInputChange = (event) => {
     const key = event.target.id;

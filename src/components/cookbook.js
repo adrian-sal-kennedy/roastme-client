@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import Card from '../shared/card';
+// import Card from '../shared/card._js';
 
 export default class cookbook extends Component {
 
@@ -7,7 +7,7 @@ export default class cookbook extends Component {
         return (
             <div>
                 <p>cookbook component</p>
-                < Card />
+                {/* < Card /> */}
             </div>
         )
     }

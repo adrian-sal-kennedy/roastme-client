@@ -1,0 +1,145 @@
+@import "base/variables";
+@import "~react-bulma-components/src/index.sass";
+@import "../../node_modules/bulma/sass/utilities/_all.sass";
+@import "../../node_modules/bulma/sass/base/_all.sass";
+@import "../../node_modules/bulma/sass/components/navbar.sass";
+@import "../../node_modules/bulma/sass/grid/_all.sass";
+@import "../../node_modules/bulma/sass/elements/button.sass";
+@import "../../node_modules/bulma/sass/elements/container.sass";
+@import "../../node_modules/bulma/sass/elements/form.sass";
+@import "../../node_modules/bulma/sass/elements/title.sass";
+@import "../../node_modules/bulma/sass/layout/hero.sass";
+@import "../../node_modules/bulma/sass/layout/section.sass";
+
+html {
+  // font-size: 16px;
+  // change above value to scale eeeeverything.
+  // background: linear-gradient(
+  //   0deg,
+  //   rgba($deepbrown, 1) 0%,
+  //   rgba(black, 1) 33%,
+  //   rgba(black, 1) 67%,
+  //   rgba($deepbrown, 1) 100%
+  // );
+  background-color: $deeperbrown;
+}
+
+.recipetag {
+  display: inline-block;
+  font-size: 10px;
+  color: $deepbrown;
+  margin: 1px;
+  padding: 0px 5px;
+  background-color: rgba(black, 0.1);
+  border-radius: 3px;
+}
+
+// .recipe-card {
+//   background-color: blanchedalmond;
+// }
+
+.roastme {
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 2px 2px rgba(black, 0.5);
+}
+
+.add-new-button {
+  background-color: $success;
+  & > * {
+    color: white;
+  }
+  font-size: 2rem;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  max-width: 4rem;
+  max-height: 4rem;
+  border-radius: 50%;
+  right: 0;
+  margin: 1rem;
+  z-index: 99;
+  box-shadow: 0.25rem 0.25rem 0.25rem rgba(black, 0.33);
+  border: none;
+}
+
+.md {
+  & > h1 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  & > h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  & > ul,
+  & > ol {
+    margin-bottom: 0.75rem;
+    list-style: inside disc;
+    margin-left: 1rem;
+  }
+  & > ol {
+    list-style-type: decimal;
+  }
+}
+
+.login-column {
+  background-image: unset;
+  background-color: rgba($dark, 0.5);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+.center-children {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label {
+  color: $light;
+}
+
+.fill-parent-link {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: unset;
+  z-index: 98;
+}
+
+// .main-component {
+//   margin-left: -2rem;
+//   margin-right: -2rem;
+// }
+
+.is-parent {
+  margin-bottom: -0.5rem;
+}
+
+.box {
+  box-shadow: inset 0px 0px 8rem -2rem burlywood;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.section {
+  margin: 0;
+  padding: 0;
+}
+
+.flex-tile {
+  flex: 1 0 20rem;
+  margin: 0.25rem;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#blog {
+  width: 100%;
+  height: 100%;
+}

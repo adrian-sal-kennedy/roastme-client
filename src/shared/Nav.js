@@ -4,14 +4,16 @@ import { Link } from "react-router-dom"; // Navbar.Link replaces this
 
 export default class Nav extends React.Component {
   state = {
-    burgerActive: "",
+    burgerActive: false,
     token: this.props.token,
   };
   onBurgerClick = (event) => {
     if (event.target.className === "navbar-burger is-active") {
       event.target.className = "navbar-burger";
+      this.setState({burgerActive: false})
     } else {
       event.target.className = "navbar-burger is-active";
+      this.setState({burgerActive: true})
     }
   };
   logOut = async (event) => {
@@ -41,24 +43,17 @@ export default class Nav extends React.Component {
       );
     }
   };
-  async componentDidMount() {
-    // this.getToken()
-  }
-  componentDidUpdate() {}
   render() {
     const { Container, Brand, Burger, Menu } = Navbar;
-    var cond = true;
-    console.log(`auth token: ${this.state.token}`);
     return (
       <Navbar color="primary">
         <Brand>
-          <Link className="navbar-item" to="/">
+          <Link className="navbar-item roastme" to="/">
             Roast me!
           </Link>
           {/* <Burger className={cond && "is-active"} /> */}
           <Burger onClick={this.onBurgerClick.bind(this)}>
-            <Menu id="menu-elements">
-              <Container>
+              <Navbar.Dropdown>
                 <Link className="navbar-item" to="/">
                   <Navbar.Link arrowless={true}>Home</Navbar.Link>
                 </Link>
@@ -71,9 +66,8 @@ export default class Nav extends React.Component {
                 <Link className="navbar-item" to="/profile">
                   <Navbar.Link arrowless={true}>Profile</Navbar.Link>
                 </Link>
-              </Container>
               {this.renderLoginToggle()}
-            </Menu>
+              </Navbar.Dropdown>
           </Burger>
         </Brand>
         <Menu>
