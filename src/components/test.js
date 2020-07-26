@@ -5,27 +5,66 @@ export default class test extends Component {
     super(props);
   }
 
-  componentDidMount = () => {
-    // fetch('http://220.240.139.117:3000/test')
-      fetch("https://roast-me-recipes.herokuapp.com/")
-      .then((response) => response.json())
-      .then((data) => this.setState({ data: data }));
+  onInputChange = (event) => {
+    const key = event.target.id;
+    if (event.target?.files) {
+      this.setState({
+        [key]: event.target.files[0]
+      })
+    } else {
+      this.setState({
+        [key]: event.target.value,
+      });
+    }
+  };
+
+  onFormSubmit = async (event) => {
+    event.preventDefault();
+    const data = new FormData()
+    for (let key in this.state) {
+      data.append(`bookmark[${key}]`, this.state[key])
+    }
+    console.log(data)
+    const response = await fetch(
+      `https://localhost:3000/bookmarks`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: data,
+      }
+    );
   };
 
   render() {
-    console.log(this.state?.data)
-    const recipes = this.state?.data.map(recipe => {
-      return(
-        <>
-        <p>{recipe.recipe.title}</p>
-        <p>{recipe.author.username}</p>
-        </>
-      )
-    })
     return (
-      <div>
-        {recipes || "loading"}
-      </div>
+      <>
+        <h1>Create a bookmark</h1>
+        <form onSubmit={this.onFormSubmit} encType="multipart/form-data">
+          <label htmlFor="title">Title</label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            onChange={this.onInputChange}
+          />
+          <label htmlFor="description">blog</label>
+          <textarea
+            name="blog"
+            id="blog"
+            onChange={this.onInputChange}
+          ></textarea>
+          <label htmlFor="image">Image</label>
+          <input
+            type="file"
+            name="image"
+            id="image"
+            onChange={this.onInputChange}
+          />
+          <input type="submit" value="Submit" />
+        </form>
+      </>
     );
   }
 }
