@@ -7,7 +7,7 @@ import {
   Form,
 } from "react-bulma-components/dist";
 import Markdown from "react-markdown";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import IngredientList from "../shared/IngredientList";
 import Taglist from "../shared/TagList";
 
@@ -26,17 +26,8 @@ export default class NewRecipe extends Component {
       [key]: event.target.value,
     });
   };
-  async componentDidMount() {
-    const { id } = this.props.match.params;
-    console.log(id);
-    const response = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/recipe/${id}`
-    );
-    const recipe = await response.json();
-    this.setState({ recipe: recipe });
-  }
   render() {
-    const { Label, Input, Field, Control, Textarea } = Form;
+    const { Input, Field, Control, Textarea } = Form;
     const { blog, ingredients, title, tags } = this.state;
     return (
       <div className="main-component flex-tile">
@@ -58,10 +49,23 @@ export default class NewRecipe extends Component {
             </Field>
             <Heading size={5}>Introduction</Heading>
             <Content
-              style={{ marginTop: "-1.5rem", marginBottom: "0", fontStyle: "italic", fontSize:"0.8rem" }}
+              style={{
+                marginTop: "-1.5rem",
+                marginBottom: "0",
+                fontStyle: "italic",
+                fontSize: "0.8rem",
+              }}
               renderAs="p"
             >
-              hint: you can type <a href="https://www.markdownguide.org/cheat-sheet/" target="_blank">markdown</a> here
+              hint: you can type{" "}
+              <a
+                href="https://www.markdownguide.org/cheat-sheet/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                markdown
+              </a>{" "}
+              here
             </Content>
             <Field>
               <Control>
