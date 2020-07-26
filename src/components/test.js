@@ -22,11 +22,10 @@ export default class test extends Component {
     event.preventDefault();
     const data = new FormData()
     for (let key in this.state) {
-      data.append(`bookmark[${key}]`, this.state[key])
+      data.append(`recipe[${key}]`, this.state[key])
     }
-    console.log(data)
-    const response = await fetch(
-      `https://localhost:3000/bookmarks`,
+    fetch(
+      `http://localhost:3000/recipe`,
       {
         method: "POST",
         headers: {
@@ -55,6 +54,13 @@ export default class test extends Component {
             id="blog"
             onChange={this.onInputChange}
           ></textarea>
+          <label htmlFor="method">Method</label>
+          <input
+            type="text"
+            name="method"
+            id="method"
+            onChange={this.onInputChange}
+          />
           <label htmlFor="image">Image</label>
           <input
             type="file"
