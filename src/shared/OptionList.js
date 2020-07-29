@@ -3,7 +3,6 @@ import { Form } from "react-bulma-components/dist";
 
 export default function OptionList(props) {
   const { searchTerm, options, className, innerClassName, name, id } = props;
-  console.log(searchTerm);
   const filtered = options.filter(
     (element) => element.toLowerCase().includes(searchTerm) && element
   );

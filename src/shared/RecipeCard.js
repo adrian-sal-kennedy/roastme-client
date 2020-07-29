@@ -24,7 +24,7 @@ export default function RecipeCard(props) {
         <time>{`${createdAt}`}</time>
       </Container>
       <Container>
-        <Taglist tags={tags.map((tag) => tag.tag)} />
+        {tags && <Taglist tags={tags.map((tag) => tag.tag)} />}
       </Container>
     </Box>
   );

@@ -225,4 +225,10 @@ html {
     rgba($deeperbrown, 0.5) 1%,
     rgba($deeperbrown, 0) 100%
   );
+  z-index: 99;
+}
+
+.scrollcatcher {
+  width: 100%;
+  height: 10rem;
 }

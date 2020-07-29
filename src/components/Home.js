@@ -17,11 +17,40 @@ import Card from "../shared/RecipeCard";
 export default class Home extends Component {
   state = {
     recipesIndex: [],
+    page: 1,
   };
   async componentDidMount() {
-    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}`);
-    const recipesIndex = await response.json();
-    this.setState({ recipesIndex: recipesIndex });
+    this.getRecipes();
+  }
+  async getRecipes() {
+    const limit = 20;
+    const { page } = this.state;
+    const offset = (page - 1) * limit;
+    // http://localhost:3000/?tag=scarlet&ingredient=Brown+Flour&limit=20&offset=0
+    try {
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}?limit=${limit}&offset=${offset}`
+      );
+      if (response.status >= 400) {
+        throw new Error("Not logged in!");
+      } else {
+        const { list } = await response.json();
+        this.setState({ recipesIndex: list });
+        console.log(page);
+      }
+    } catch (err) {
+      this.setState({
+        errMessage: err.message,
+      });
+    }
+  }
+  getNextPage() {
+    const page = this.state.page + 1;
+    this.setState({
+      page: page,
+    });
+    console.log(page);
+    this.getRecipes();
   }
   render() {
     const recipes = this.state.recipesIndex;
@@ -39,13 +68,24 @@ export default class Home extends Component {
           <Button className="add-new-button">
             <Link to={"recipe/new"}>+</Link>
           </Button>
-          {recipes.map((recipe, idx) => {
-            return (
-              <div className="main-component flex-tile" key={idx + 1}>
-                {recipes[idx] && <Card recipe={recipe} />}
-              </div>
-            );
-          })}
+          {recipes &&
+            recipes.map((recipe, idx) => {
+              return (
+                <div className="main-component flex-tile" key={idx + 1}>
+                  {recipes[idx] && <Card recipe={recipe} />}
+                </div>
+              );
+            })}
+          {recipes && recipes.length > 0 && (
+            <div
+              className="scrollcatcher"
+              onClick={this.getNextPage.bind(this)}
+            >
+              <Heading className="is-dark has-text-centered" size={2}>
+                Click here for more!
+              </Heading>
+            </div>
+          )}
         </Section>
         {/* recipe list above ^^^ | vvv footer stuff below */}
         <Section>
