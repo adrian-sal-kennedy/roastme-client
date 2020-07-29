@@ -34,8 +34,8 @@ export default class Home extends Component {
       if (response.status >= 400) {
         throw new Error("Not logged in!");
       } else {
-        const { list } = await response.json();
-        this.setState({ recipesIndex: list });
+        const { list, count } = await response.json();
+        this.setState({ recipesIndex: list, count: count });
         console.log(page);
       }
     } catch (err) {

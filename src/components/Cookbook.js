@@ -41,8 +41,8 @@ export default class Cookbook extends Component {
       if (response.status >= 400) {
         throw new Error("You must be logged in to do this!");
       } else {
-        const { list } = await response.json();
-        this.setState({ recipesIndex: list });
+        const { list, count } = await response.json();
+        this.setState({ recipesIndex: list, count: count });
       }
     } catch (err) {
       this.setState({
