@@ -18,13 +18,19 @@ import Card from "../shared/RecipeCard";
 export default class Cookbook extends Component {
   state = {
     recipesIndex: [],
-    token: "",
-    errMessage: null,
+    page: 1,
   };
   async componentDidMount() {
+    this.getRecipes();
+  }
+  async getRecipes() {
+    const limit = 20;
+    const { page } = this.state;
+    const offset = (page - 1) * limit;
+    // http://localhost:3000/?tag=scarlet&ingredient=Brown+Flour&limit=20&offset=0
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/cookbook`,
+        `${process.env.REACT_APP_BACKEND_URL}/cookbook?limit=${limit}&offset=${offset}`,
         {
           method: "GET",
           headers: {
@@ -33,16 +39,25 @@ export default class Cookbook extends Component {
         }
       );
       if (response.status >= 400) {
-        throw new Error("You must be logged in to see your recipes");
+        throw new Error("You must be logged in to do this!");
       } else {
-        const recipesIndex = await response.json();
-        this.setState({ recipesIndex: recipesIndex });
+        const { list } = await response.json();
+        this.setState({ recipesIndex: list });
+        console.log(page);
       }
     } catch (err) {
       this.setState({
         errMessage: err.message,
       });
     }
+  }
+  getNextPage() {
+    const { page } = this.state;
+    this.setState({
+      page: page + 1,
+    });
+    console.log(this.state.page);
+    this.getRecipes();
   }
   render() {
     const recipes = this.state.recipesIndex;
@@ -83,14 +98,17 @@ export default class Cookbook extends Component {
               <Link to={"recipe/new"}>+</Link>
             </Button>
           )}
-
-          {recipes.map((recipe, idx) => {
-            return (
-              <div className="main-component flex-tile" key={idx + 1}>
-                {recipes[idx] && <Card recipe={recipe} />}
-              </div>
-            );
-          })}
+          {recipes.length < 1 &&
+          <Card recipe={{recipe: {title: "You don't have any recipes yet!",id: "new",blog: "## Click here or the green plus sign to get started."}}}/>
+          }
+          {recipes.length > 0 &&
+            recipes.map((recipe, idx) => {
+              return (
+                <div className="main-component flex-tile" key={idx + 1}>
+                  {recipes[idx] && <Card recipe={recipe} />}
+                </div>
+              );
+            })}
         </Section>
         {/* recipe list above ^^^ | vvv footer stuff below */}
         <Section>

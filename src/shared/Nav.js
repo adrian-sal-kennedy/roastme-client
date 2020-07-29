@@ -1,52 +1,58 @@
 import React from "react";
 import { Navbar } from "react-bulma-components";
 import { Link, withRouter } from "react-router-dom"; // Navbar.Link replaces this
-import LinkList from "./LinkList.js"
+import LinkList from "./LinkList.js";
 
 function RenderLoginOut(props) {
-  const { Container } = Navbar;
-  const { loggedIn, onClick } = props;
-  // console.log("RenderLoginOut", props);
+  const loggedIn = (localStorage.getItem("token") && true) || false;
   if (loggedIn && true) {
-    return (
-      <Container position="end">
+    return <RenderLogOut {...props} />;
+  } else {
+    return <RenderLogin {...props} />;
+  }
+}
+function RenderLogOut(props) {
+  const { Container } = Navbar;
+  const { onClick, className, innerClassName } = props;
+  return (
+    <Container position="end">
+      <Link to="#" className={className}>
         <Navbar.Link
+          className={innerClassName}
           arrowless={true}
-          className={props.className}
           onClick={onClick}
         >
           Logout
         </Navbar.Link>
-      </Container>
-    );
-  } else {
-    return (
-      <Container position="end">
-        <Link to="/login">
-          <Navbar.Link className={props.className} arrowless={true}>
-            Log in
-          </Navbar.Link>
-        </Link>
-        <Link to="/signup">
-          <Navbar.Link className={props.className} arrowless={true}>
-            Sign up
-          </Navbar.Link>
-        </Link>
-      </Container>
-    );
-  }
+      </Link>
+    </Container>
+  );
 }
+function RenderLogin(props) {
+  const { Container } = Navbar;
+  const { className, innerClassName } = props;
+  return (
+    <Container position="end">
+      <Link to="/login" className={className}>
+        <Navbar.Link className={innerClassName} arrowless={true}>
+          Log in
+        </Navbar.Link>
+      </Link>
+      <Link to="/signup" className={className}>
+        <Navbar.Link className={innerClassName} arrowless={true}>
+          Sign up
+        </Navbar.Link>
+      </Link>
+    </Container>
+  );
+}
+
 class Nav extends React.Component {
   state = {
     burgerActive: false,
     loggedIn: false,
     token: null,
   };
-  constructor(props) {
-    super(props);
-    this.state = { loggedIn: props.loggedIn, token: props.token };
-    // console.log(`Navbar: loggedIn state = ${props.loggedIn}`);
-  }
   onBurgerClick = () => {
     this.setState({ burgerActive: !this.state.burgerActive });
   };
@@ -56,7 +62,7 @@ class Nav extends React.Component {
   logOut = async (event) => {
     event.preventDefault();
     localStorage.removeItem("token");
-    this.turnBurgerOff();
+    this.turnBurgerOff.bind(this)();
     this.props.history.push("/login");
   };
   componentDidMount() {
@@ -65,8 +71,10 @@ class Nav extends React.Component {
     // console.log("Nav.js props: ", this.props);
     // console.log("Nav.js state: ", this.state);
   }
+  componentDidUpdate() {}
   render() {
     const { Container, Brand, Burger, Menu } = Navbar;
+    const { burgerActive, loggedIn } = this.state;
     return (
       <>
         <Navbar color="primary">
@@ -76,9 +84,8 @@ class Nav extends React.Component {
             </Link>
             <Burger
               onClick={this.onBurgerClick.bind(this)}
-              className={`${this.state.burgerActive && "is-active"}`}
-            >
-            </Burger>
+              className={`${burgerActive && "is-active"}`}
+            ></Burger>
           </Brand>
           <Menu>
             <Container>
@@ -90,10 +97,14 @@ class Nav extends React.Component {
                 innerClassName="navbar-item"
               />
             </Container>
+            {/* <RenderLoginOut
+              className="navbar-item"
+              loggedIn={false}
+              onClick={this.logOut.bind(this)}
+            /> */}
             <RenderLoginOut
               className="navbar-item"
-              loggedIn={this.state.loggedIn}
-              onClick={this.logOut}
+              onClick={this.logOut.bind(this)}
             />
           </Menu>
         </Navbar>
@@ -106,9 +117,8 @@ class Nav extends React.Component {
             >
               <LinkList innerClassName="navbar-item is-dark is-dropdown-item" />
               <RenderLoginOut
-                loggedIn={this.state.loggedIn}
-                onClick={this.logOut}
-                className="navbar-item is-dark is-dropdown-item"
+                innerClassName="navbar-item is-dark is-dropdown-item"
+                onClick={this.logOut.bind(this)}
               />
               {/* {this.renderLoginToggle()} */}
               {/* This here is the dropdown navbar */}

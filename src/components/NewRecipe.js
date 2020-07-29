@@ -24,12 +24,12 @@ export default class NewRecipe extends Component {
   async componentDidMount() {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/ingredients/index`,
+        `${process.env.REACT_APP_BACKEND_URL}/ingredients`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            // Authorization: `Bearer ${localStorage.getItem("token")}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
           },
         }
       );
@@ -37,7 +37,7 @@ export default class NewRecipe extends Component {
         throw new Error("Something went wrong NewRecipe.js!");
       } else {
         const ingredients = await response.json();
-        ingredients && console.log(ingredients);
+        // ingredients && console.log(ingredients);
         localStorage.setItem("ingredients", ingredients);
         this.setState({
           ingredientList: ingredients,
@@ -74,7 +74,9 @@ export default class NewRecipe extends Component {
     const { title, blog, method, ingredients } = this.state;
     const body = {
       recipe: { title, blog, method },
-      ingredients: [...ingredients]
+    };
+    const body2 = {
+      ingredients: { list: [...ingredients] },
     };
     try {
       const response = await fetch(
@@ -88,8 +90,28 @@ export default class NewRecipe extends Component {
           body: JSON.stringify(body),
         }
       );
+      const { recipe } = await response.json();
       if (response.status >= 400) {
         throw new Error("Couldn't store recipe!");
+      } else {
+        // this.setState({
+        //   recipeId: response.recipe,
+        // });
+        console.log(recipe);
+        const response2 = await fetch(
+          `${process.env.REACT_APP_BACKEND_URL}/ingredients/${recipe}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+            body: JSON.stringify(body2),
+          }
+        );
+        if (response2.status >= 400) {
+          throw new Error("Couldn't store ingredients!");
+        }
       }
     } catch (err) {
       this.setState({
@@ -97,6 +119,12 @@ export default class NewRecipe extends Component {
       });
     }
   };
+  // curl --location --request POST 'http://194.223.23.224:3000/recipe' --header 'Content-Type: application/json', --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTYxMDY2NDYsInN1YiI6MjB9.VsFUH2-MEfgWsMt-UmEuoRf1ktw_IUnUG_g-A55s_KM' --data-raw '{"recipe":{"title":"Sals mums cacciatore", "blog":"straight up comfort food", "method":"cook it."}, "ingredients":["Chicken", "Brown Mushrooms", "Oregano", "Passata", "Onion", "Red wine", "Balsamic Vinegar"]}'
+
+  componentWillUnmount() {
+    localStorage.removeItem("ingredients");
+    localStorage.removeItem("currentIngredient");
+  }
   render() {
     const { Input, Field, Control, Textarea } = Form;
     const {

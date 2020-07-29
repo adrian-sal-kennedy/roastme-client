@@ -43,13 +43,13 @@ class Login extends Component {
           body: JSON.stringify(body),
         }
       );
+      console.log(JSON.stringify(body));
       if (response.status >= 400) {
         throw new Error("Wrong email or password!");
       } else {
         const { jwt } = await response.json();
         localStorage.setItem("token", jwt);
         this.props.history.push("/");
-        this.setState({ token: jwt });
       }
     } catch (err) {
       this.setState({
@@ -62,11 +62,11 @@ class Login extends Component {
     const { Column } = Columns;
     //getting around bulma-component import problems
 
-    const { email, password, errMessage } = this.state;
+    const { email, password, errMessage, bgPicUrl } = this.state;
     return (
       <Container
         style={{
-          background: `grey url('${this.state.bgPicUrl}') center no-repeat`,
+          background: `grey url('${bgPicUrl}') center no-repeat`,
           backgroundSize: "cover",
         }}
       >
@@ -94,7 +94,7 @@ class Login extends Component {
           <Section>
             <Container className="center-children">
               <Column size="two-thirds" className="login-column">
-                <form onSubmit={this.onFormSubmit}>
+                <form onSubmit={this.onFormSubmit.bind(this)}>
                   <Field>
                     <Label type="email">Email address</Label>
                     <Control>
