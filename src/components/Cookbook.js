@@ -43,7 +43,6 @@ export default class Cookbook extends Component {
       } else {
         const { list } = await response.json();
         this.setState({ recipesIndex: list });
-        console.log(page);
       }
     } catch (err) {
       this.setState({

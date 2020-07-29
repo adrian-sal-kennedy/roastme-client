@@ -68,13 +68,11 @@ class Nav extends React.Component {
   componentDidMount() {
     const token = localStorage.getItem("token");
     this.setState({ loggedIn: true, token: token });
-    // console.log("Nav.js props: ", this.props);
-    // console.log("Nav.js state: ", this.state);
   }
   componentDidUpdate() {}
   render() {
     const { Container, Brand, Burger, Menu } = Navbar;
-    const { burgerActive, loggedIn } = this.state;
+    const { burgerActive } = this.state;
     return (
       <>
         <Navbar color="primary">
@@ -97,11 +95,6 @@ class Nav extends React.Component {
                 innerClassName="navbar-item"
               />
             </Container>
-            {/* <RenderLoginOut
-              className="navbar-item"
-              loggedIn={false}
-              onClick={this.logOut.bind(this)}
-            /> */}
             <RenderLoginOut
               className="navbar-item"
               onClick={this.logOut.bind(this)}
@@ -120,7 +113,6 @@ class Nav extends React.Component {
                 innerClassName="navbar-item is-dark is-dropdown-item"
                 onClick={this.logOut.bind(this)}
               />
-              {/* {this.renderLoginToggle()} */}
               {/* This here is the dropdown navbar */}
               <div
                 className="clickmeaway pos-absolute"
