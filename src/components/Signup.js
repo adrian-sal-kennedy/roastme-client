@@ -72,11 +72,14 @@ export default class Signup extends Component {
         style={{
           background: `grey url('${this.state.bgPicUrl}') center no-repeat`,
           backgroundSize: "cover",
-          textShadow: "2px 2px #00000080"
         }}
       >
         <Container>
-          <Hero className="center-children" color="dark" style={{ backgroundColor: "unset" }}>
+          <Hero
+            className="roastme center-children"
+            color="dark"
+            style={{ backgroundColor: "unset" }}
+          >
             <Hero.Body>
               <Heading size={2} renderAs="h1">
                 Roastme!
@@ -142,14 +145,6 @@ export default class Signup extends Component {
                         }}
                       >
                         Submit
-                      </Button>
-                      <Button
-                        className="button is-link"
-                        style={{
-                          margin: "0.75em",
-                        }}
-                      >
-                        Sign up
                       </Button>
                     </Control>
                   </Field>

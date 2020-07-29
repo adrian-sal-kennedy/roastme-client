@@ -5,7 +5,7 @@ import aha from "./test";
 import Home from "./Home";
 import Login from "./Login";
 import Signup from "./Signup";
-import Cookbook from "./cookbook";
+import Cookbook from "./Cookbook";
 import Recipe from "./Recipe";
 import NewRecipe from "./NewRecipe";
 import Dashboard from "./dashboard";
@@ -14,10 +14,20 @@ import Navbar from "../shared/Nav";
 import User from "./user";
 import "react-bulma-components/dist/react-bulma-components.min.css";
 export default class App extends React.Component {
+  state = {
+    loggedIn: false,
+    token: null,
+  };
+  componentDidMount() {
+    const token = localStorage.getItem("token");
+    this.setState({ loggedIn: true, token: token });
+  }
   render() {
+    // this.state?.loggedIn && console.log("logged in!");
+    // this.state?.loggedIn || console.log("logged out!");
     return (
       <>
-        <Navbar />
+        <Navbar token={this.state.token} loggedIn={this.state.loggedIn} />
         <Switch>
           <Route exact path="/test" component={aha} />
           <Route exact path="/" component={Home} />
