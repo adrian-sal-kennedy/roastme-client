@@ -13,18 +13,17 @@ export default function RecipeCard(props) {
       <Container style={{ display: "flex", flexDirection: "column" }}>
         <Link className="fill-parent-link" to={`recipe/${recipe.id}`} />
         <Heading size={4}>{recipe.title}</Heading>
-        <Media.Item renderAs="figure" position="left">
-              <Image
-                size="16by9"
-                alt="64x64"
-                src={`pics/${Math.floor(Math.random() * 26)}.jpg`}
-              />
-            </Media.Item>
+        <Media.Item position="left">
+          <Image
+            size="16by9"
+            alt="64x64"
+            src={`pics/${Math.floor(Math.random() * 26)}.jpg`}
+            className="image-crop-cover"
+          />
+        </Media.Item>
         <Heading subtitle>{author.username}</Heading>
-        <time>{`${createdAt}`}</time>
-      </Container>
-      <Container>
-        {tags && <Taglist tags={tags.map((tag) => tag.tag)} />}
+          {tags && <Taglist tags={tags.map((tag) => tag.tag)} />}
+        <time className="font-075rem">{`${createdAt}`}</time>
       </Container>
     </Box>
   );
