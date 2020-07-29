@@ -1,12 +1,12 @@
 import React from "react";
-import { Navbar, Dropdown } from "react-bulma-components";
+import { Navbar } from "react-bulma-components";
 import { Link, withRouter } from "react-router-dom"; // Navbar.Link replaces this
 import LinkList from "./LinkList.js"
 
 function RenderLoginOut(props) {
   const { Container } = Navbar;
   const { loggedIn, onClick } = props;
-  console.log("RenderLoginOut", props);
+  // console.log("RenderLoginOut", props);
   if (loggedIn && true) {
     return (
       <Container position="end">
@@ -45,7 +45,7 @@ class Nav extends React.Component {
   constructor(props) {
     super(props);
     this.state = { loggedIn: props.loggedIn, token: props.token };
-    console.log(`Navbar: loggedIn state = ${props.loggedIn}`);
+    // console.log(`Navbar: loggedIn state = ${props.loggedIn}`);
   }
   onBurgerClick = () => {
     this.setState({ burgerActive: !this.state.burgerActive });
@@ -62,8 +62,8 @@ class Nav extends React.Component {
   componentDidMount() {
     const token = localStorage.getItem("token");
     this.setState({ loggedIn: true, token: token });
-    console.log("Nav.js props: ", this.props);
-    console.log("Nav.js state: ", this.state);
+    // console.log("Nav.js props: ", this.props);
+    // console.log("Nav.js state: ", this.state);
   }
   render() {
     const { Container, Brand, Burger, Menu } = Navbar;

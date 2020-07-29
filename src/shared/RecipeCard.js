@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import Markdown from "react-markdown";
 import { Link } from "react-router-dom";
-import { Heading, Box, Container, Content } from "react-bulma-components";
+import { Heading, Box, Container } from "react-bulma-components";
 import Taglist from "./TagList";
 
 export default function RecipeCard(props) {

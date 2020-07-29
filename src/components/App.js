@@ -22,12 +22,9 @@ export default class App extends React.Component {
     const token = localStorage.getItem("token");
     this.setState({ loggedIn: true, token: token });
   }
-  componentDidUpdate() {
-    console.log(this.state.loggedIn, this.state.token);
-  }
   render() {
-    this.state?.loggedIn && console.log("logged in!");
-    this.state?.loggedIn || console.log("logged out!");
+    // this.state?.loggedIn && console.log("logged in!");
+    // this.state?.loggedIn || console.log("logged out!");
     return (
       <>
         <Navbar token={this.state.token} loggedIn={this.state.loggedIn} />

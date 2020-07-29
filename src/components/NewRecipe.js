@@ -11,7 +11,6 @@ import {
 import Markdown from "react-markdown";
 import OptionList from "../shared/OptionList";
 import Taglist from "../shared/TagList";
-import Select from "react-select";
 
 export default class NewRecipe extends Component {
   state = {
