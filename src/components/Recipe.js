@@ -29,7 +29,7 @@ export default class Recipe extends Component {
       .startOf("hour")
       .fromNow();
     return (
-      <div className="main-component flex-tile">
+      <div className="main-component">
         <Box style={{ margin: "0.25rem" }}>
           {recipe && <Heading size={3}>{recipe.title}</Heading>}
           {recipe && (
@@ -43,7 +43,7 @@ export default class Recipe extends Component {
           <time>{`${createdAt}`}</time>
           <Container>
             {tags && console.log("recipe.js", tags)}
-            {tags && <Taglist tags={tags} />}
+            {tags && <Taglist tags={tags.map((tag) => tag.tag)} />}
           </Container>
         </Box>
       </div>

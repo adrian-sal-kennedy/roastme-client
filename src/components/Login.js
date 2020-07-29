@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
 import {
   Container,
   Hero,
@@ -11,7 +12,7 @@ import {
 } from "react-bulma-components";
 import { RandomPicUrl } from "../shared/corePics";
 
-export default class Login extends Component {
+class Login extends Component {
   state = {
     email: "",
     password: "",
@@ -48,6 +49,7 @@ export default class Login extends Component {
         const { jwt } = await response.json();
         localStorage.setItem("token", jwt);
         this.props.history.push("/");
+        this.setState({ token: jwt });
       }
     } catch (err) {
       this.setState({
@@ -55,7 +57,6 @@ export default class Login extends Component {
       });
     }
   };
-
   render() {
     const { Label, Input, Field, Control } = Form;
     const { Column } = Columns;
@@ -67,11 +68,14 @@ export default class Login extends Component {
         style={{
           background: `grey url('${this.state.bgPicUrl}') center no-repeat`,
           backgroundSize: "cover",
-          textShadow: "2px 2px #00000080",
         }}
       >
         <Container>
-          <Hero className="center-children" color="dark" style={{ backgroundColor: "unset" }}>
+          <Hero
+            className="roastme center-children"
+            color="dark"
+            style={{ backgroundColor: "unset" }}
+          >
             <Hero.Body>
               <Heading size={2} renderAs="h1">
                 Roastme!
@@ -126,19 +130,17 @@ export default class Login extends Component {
                       >
                         Submit
                       </Button>
-                      <Button
+                      <Link
+                        to="/signup"
                         className="button is-link"
                         style={{
                           margin: "0.75em",
                         }}
                       >
                         Sign up
-                      </Button>
+                      </Link>
                     </Control>
                   </Field>
-                  {/* <pre>
-                  <code>{JSON.stringify(this.state, null, 2)}</code>
-                </pre> */}
                 </form>
               </Column>
             </Container>
@@ -148,3 +150,5 @@ export default class Login extends Component {
     );
   }
 }
+
+export default withRouter(Login);

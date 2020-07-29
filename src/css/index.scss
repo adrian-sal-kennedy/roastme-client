@@ -59,8 +59,8 @@ html {
   border-radius: 50%;
   right: 0;
   margin: 1rem;
-  z-index: 99;
-  box-shadow: 0.25rem 0.25rem 0.25rem rgba(black, 0.33);
+  z-index: 20;
+  box-shadow: 0.5rem 0.5rem 0.33rem -0.33rem rgba(black, 0.33);
   border: none;
 }
 
@@ -68,10 +68,12 @@ html {
   & > h1 {
     font-size: 2rem;
     margin-bottom: 1rem;
+    font-weight: 900;
   }
   & > h2 {
     font-size: 1.5rem;
     margin-bottom: 0.75rem;
+    font-weight: 600;
   }
   & > ul,
   & > ol {
@@ -105,7 +107,7 @@ html {
   height: 100%;
   position: absolute;
   background: unset;
-  z-index: 98;
+  z-index: 10;
 }
 
 // .main-component {
@@ -121,11 +123,21 @@ html {
   box-shadow: inset 0px 0px 8rem -2rem burlywood;
 }
 
+.input-text {
+  border: solid 1px rgba($deepbrown, 0.5);
+  box-shadow: inset 0.33rem 0.33rem 0.5rem -0.33rem rgba($deeperbrown, 0.25);
+}
+
 .flex {
   display: flex;
   flex-wrap: wrap;
 }
-
+.flex-all {
+  @extend .flex;
+  & > * {
+    @extend .flex;
+  }
+}
 .section {
   margin: 0;
   padding: 0;
@@ -133,7 +145,7 @@ html {
 
 .flex-tile {
   flex: 1 0 20rem;
-  margin: 0.25rem;
+  margin: 0.5px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -142,4 +154,75 @@ html {
 #blog {
   width: 100%;
   height: 100%;
+}
+.tabs:not(:last-child) {
+  margin-bottom: 0;
+}
+
+.navbar-burger {
+  & > span {
+    aria-hidden: true;
+  }
+}
+
+.pos-absolute {
+  position: absolute;
+}
+.dropdown-nav {
+  background-color: $white;
+  width: 100%;
+  z-index: 90;
+  box-shadow: inset 0rem 0.33rem 0.5rem -0.33rem rgba($deeperbrown, 0.75);
+  padding-bottom: 0;
+}
+
+.deepbrown {
+  background-color: $deepbrown;
+}
+.font-1rem {
+  font-size: 1rem !important;
+  & > * {
+    font-size: 1rem !important;
+  }
+}
+.font-075rem {
+  font-size: 0.75rem !important;
+  & > * {
+    font-size: 0.75rem !important;
+  }
+}
+.font-05rem {
+  font-size: 0.5rem !important;
+  & > * {
+    font-size: 0.5rem !important;
+  }
+}
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 10rem;
+}
+.is-dark {
+  color: $light;
+}
+
+.is-dropdown-item {
+  border-bottom: solid 1px rgba($deeperbrown, 0.5);
+}
+
+.message {
+  z-index: 80;
+}
+
+.clickmeaway {
+  width: 100%;
+  height: 100vh;
+  // position: absolute;
+  // background-color: rgba($deeperbrown, 0.5);
+  background: linear-gradient(
+    180deg,
+    rgba($deeperbrown, 0.75) 0%,
+    rgba($deeperbrown, 0.5) 1%,
+    rgba($deeperbrown, 0) 100%
+  );
 }
