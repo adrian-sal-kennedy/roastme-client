@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import RandomPic from "../shared/corePics";
-// Columns,
 import {
   Heading,
   Hero,
@@ -28,7 +27,6 @@ export default class Cookbook extends Component {
     const limit = 10;
     const { page } = props || this.state;
     const offset = (page - 1) * limit;
-    // http://localhost:3000/?tag=scarlet&ingredient=Brown+Flour&limit=20&offset=0
     try {
       const response = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/cookbook?limit=${limit}&offset=${offset}&order=${order}`,
@@ -47,7 +45,6 @@ export default class Cookbook extends Component {
           recipesIndex: [...this.state.recipesIndex, ...list],
           count: count,
         });
-        console.log(`there are ${count} records`);
       }
     } catch (err) {
       this.setState({
