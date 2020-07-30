@@ -76,7 +76,7 @@ export default class NewRecipe extends Component {
       recipe: { title, blog, method },
     };
     const body2 = {
-      ingredients: { list: `"${[...ingredients].join('","')}"` },
+      ingredients: { list: `${[...ingredients].join(',')}` },
     };
     try {
       const response = await fetch(
