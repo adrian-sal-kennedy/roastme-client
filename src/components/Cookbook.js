@@ -42,7 +42,6 @@ export default class Cookbook extends Component {
         throw new Error("You must be logged in to do this!");
       } else {
         const { list, count } = await response.json();
-        console.log(list);
         this.setState({ recipesIndex: list, count: count });
       }
     } catch (err) {
