@@ -23,7 +23,7 @@ export default class Home extends Component {
     this.getRecipes();
   }
   async getRecipes(props) {
-    const order = "new";
+    const order = "old";
     const limit = 10;
     const { page } = props || this.state;
     const offset = (page - 1) * limit;

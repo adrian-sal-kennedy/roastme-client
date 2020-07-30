@@ -7,7 +7,14 @@ import MethodList from "../shared/MethodList";
 import Taglist from "../shared/TagList";
 
 // import Card from "../shared/altCard";
-
+function isJson(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
 export default class Recipe extends Component {
   state = {
     errorMessage: "",
@@ -25,11 +32,10 @@ export default class Recipe extends Component {
   }
   render() {
     const { recipe, ingredients, author, tags } = this.state?.recipe;
-    const method = recipe?.method && JSON.parse(recipe.method);
+    const method = isJson(recipe?.method) ? JSON.parse(recipe.method) : {"bad method": recipe?.method};
     const createdAt = moment(this.state.recipe.created_at)
       .startOf("hour")
       .fromNow();
-    // console.log(recipe?.method);
     return (
       <div className="main-component">
         <Box style={{ margin: "1px" }}>

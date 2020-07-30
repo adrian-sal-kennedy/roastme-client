@@ -24,7 +24,7 @@ export default class Cookbook extends Component {
     this.getRecipes();
   }
   async getRecipes(props) {
-    const order = "new";
+    const order = "old";
     const limit = 10;
     const { page } = props || this.state;
     const offset = (page - 1) * limit;
@@ -47,6 +47,7 @@ export default class Cookbook extends Component {
           recipesIndex: [...this.state.recipesIndex, ...list],
           count: count,
         });
+        console.log(`there are ${count} records`);
       }
     } catch (err) {
       this.setState({
@@ -90,8 +91,6 @@ export default class Cookbook extends Component {
                     Log in
                   </Link>
                 </Message.Header>
-                {/* <Message.Body>
-              </Message.Body> */}
               </Message>
             </Container>
           )}
@@ -115,7 +114,10 @@ export default class Cookbook extends Component {
           {recipes.length > 0 &&
             recipes.map((recipe, idx) => {
               return (
-                <div className="main-component flex-tile recipe-card" key={idx + 1}>
+                <div
+                  className="main-component flex-tile recipe-card"
+                  key={idx + 1}
+                >
                   {recipes[idx] && <Card recipe={recipe} />}
                 </div>
               );
