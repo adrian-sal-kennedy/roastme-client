@@ -42,7 +42,7 @@ export default class Cookbook extends Component {
         throw new Error("You must be logged in to do this!");
       } else {
         const { list, count } = await response.json();
-        console.log(list)
+        console.log(list);
         this.setState({ recipesIndex: list, count: count });
       }
     } catch (err) {
@@ -92,11 +92,22 @@ export default class Cookbook extends Component {
               </Message>
             </Container>
           )}
-          
+
           {!errMessage && (
             <Button className="add-new-button">
               <Link to={"recipe/new"}>+</Link>
             </Button>
+          )}
+          {recipes.length < 1 && (
+            <Card
+              recipe={{
+                recipe: {
+                  title: "You don't have any recipes yet!",
+                  id: "new",
+                  blog: "## Click here or the green plus sign to get started.",
+                },
+              }}
+            />
           )}
           {recipes.length > 0 &&
             recipes.map((recipe, idx) => {
