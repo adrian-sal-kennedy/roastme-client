@@ -24,13 +24,14 @@ export default class Cookbook extends Component {
     this.getRecipes();
   }
   async getRecipes() {
+    const order = "new";
     const limit = 20;
     const { page } = this.state;
     const offset = (page - 1) * limit;
     // http://localhost:3000/?tag=scarlet&ingredient=Brown+Flour&limit=20&offset=0
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/cookbook?limit=${limit}&offset=${offset}`,
+        `${process.env.REACT_APP_BACKEND_URL}/cookbook?limit=${limit}&offset=${offset}&order=${order}`,
         {
           method: "GET",
           headers: {
@@ -97,7 +98,7 @@ export default class Cookbook extends Component {
               <Link to={"recipe/new"}>+</Link>
             </Button>
           )}
-          {recipes.length < 1 && (
+          {recipes[0] && recipes.length < 1 && (
             <Card
               recipe={{
                 recipe: {

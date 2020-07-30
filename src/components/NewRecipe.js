@@ -76,7 +76,7 @@ export default class NewRecipe extends Component {
       recipe: { title, blog, method },
     };
     const body2 = {
-      ingredients: { list: [...ingredients] },
+      ingredients: { list: `${[...ingredients].join(",")}` },
     };
     try {
       const response = await fetch(
@@ -94,10 +94,6 @@ export default class NewRecipe extends Component {
       if (response.status >= 400) {
         throw new Error("Couldn't store recipe!");
       } else {
-        // this.setState({
-        //   recipeId: response.recipe,
-        // });
-        console.log(recipe);
         const response2 = await fetch(
           `${process.env.REACT_APP_BACKEND_URL}/ingredients/${recipe}`,
           {
@@ -111,6 +107,8 @@ export default class NewRecipe extends Component {
         );
         if (response2.status >= 400) {
           throw new Error("Couldn't store ingredients!");
+        } else {
+          this.props.history.push("/cookbook");
         }
       }
     } catch (err) {
@@ -119,8 +117,6 @@ export default class NewRecipe extends Component {
       });
     }
   };
-  // curl --location --request POST 'http://194.223.23.224:3000/recipe' --header 'Content-Type: application/json', --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTYxMDY2NDYsInN1YiI6MjB9.VsFUH2-MEfgWsMt-UmEuoRf1ktw_IUnUG_g-A55s_KM' --data-raw '{"recipe":{"title":"Sals mums cacciatore", "blog":"straight up comfort food", "method":"cook it."}, "ingredients":["Chicken", "Brown Mushrooms", "Oregano", "Passata", "Onion", "Red wine", "Balsamic Vinegar"]}'
-
   componentWillUnmount() {
     localStorage.removeItem("ingredients");
     localStorage.removeItem("currentIngredient");
@@ -243,26 +239,25 @@ export default class NewRecipe extends Component {
               />
             </Control>
           </Field>
-          <form onSubmit={this.onFormSubmit}>
-            {errMessage && (
-              <Message color="danger">
-                <Message.Header>Error! {errMessage}</Message.Header>
-              </Message>
-            )}
-            <Field kind="group">
-              <Control>
-                <Button
-                  type="primary"
-                  className="button is-link"
-                  style={{
-                    margin: "0.75em",
-                  }}
-                >
-                  Submit
-                </Button>
-              </Control>
-            </Field>
-          </form>
+          {errMessage && (
+            <Message color="danger">
+              <Message.Header>Error! {errMessage}</Message.Header>
+            </Message>
+          )}
+          <Field kind="group">
+            <Control>
+              <Button
+                type="primary"
+                className="button is-link"
+                onClick={this.onFormSubmit.bind(this)}
+                style={{
+                  margin: "0.75em",
+                }}
+              >
+                Submit
+              </Button>
+            </Control>
+          </Field>
         </Box>
         <Box style={{ margin: "0.25rem", flex: "0 1 58rem" }}>
           <Content

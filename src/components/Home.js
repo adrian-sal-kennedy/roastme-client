@@ -23,13 +23,14 @@ export default class Home extends Component {
     this.getRecipes();
   }
   async getRecipes() {
+    const order = "new";
     const limit = 20;
     const { page } = this.state;
     const offset = (page - 1) * limit;
     // http://localhost:3000/?tag=scarlet&ingredient=Brown+Flour&limit=20&offset=0
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}?limit=${limit}&offset=${offset}`
+        `${process.env.REACT_APP_BACKEND_URL}?limit=${limit}&offset=${offset}&order=${order}`
       );
       if (response.status >= 400) {
         throw new Error("Not logged in!");
