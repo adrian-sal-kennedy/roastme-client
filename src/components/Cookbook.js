@@ -97,7 +97,7 @@ export default class Cookbook extends Component {
               <Link to={"recipe/new"}>+</Link>
             </Button>
           )}
-          {recipes.length < 1 && (
+          {recipes[0] && recipes.length < 1 && (
             <Card
               recipe={{
                 recipe: {
