@@ -7,6 +7,7 @@ import Taglist from "./TagList";
 export default function RecipeCard(props) {
   const { recipe, author, tags } = props.recipe;
   const createdAt = moment(recipe.created_at).startOf("hour").fromNow();
+  console.log(recipe.created_at);
 
   return (
     <Box style={{ width: "100%", height: "100%" }}>
@@ -22,7 +23,7 @@ export default function RecipeCard(props) {
           />
         </Media.Item>
         <Heading subtitle>{author?.username}</Heading>
-          {tags && <Taglist tags={tags.map((tag) => tag.tag)} />}
+        {tags && <Taglist tags={tags.map((tag) => tag.tag)} />}
         <time className="font-075rem">{`${createdAt}`}</time>
       </Container>
     </Box>

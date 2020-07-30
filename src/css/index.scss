@@ -84,6 +84,10 @@ html {
   & > ol {
     list-style-type: decimal;
   }
+  & > pre {
+    width: calc(100vw - 6rem);
+    overflow: scroll;
+  }
 }
 
 .login-column {
