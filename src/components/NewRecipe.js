@@ -115,10 +115,6 @@ export default class NewRecipe extends Component {
       });
     }
   };
-  // curl --location --request POST 'http://194.223.23.224:3000/ingredients/129' --header 'Content-Type: application/json', --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTYxMDY2NDYsInN1YiI6MjB9.VsFUH2-MEfgWsMt-UmEuoRf1ktw_IUnUG_g-A55s_KM' --data-raw '{"ingredients":{ "list": "Chicken,Brown Mushrooms,Oregano,Passata,Onion,Red wine,Balsamic Vinegar"}}' && echo
-
-  // curl --location --request POST 'http://194.223.23.224:3000/recipe' --header 'Content-Type: application/json', --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTYxMDY2NDYsInN1YiI6MjB9.VsFUH2-MEfgWsMt-UmEuoRf1ktw_IUnUG_g-A55s_KM' --data-raw '{"recipe":{"title":"Sals mums cacciatore", "blog":"straight up comfort food", "method":"cook it."}, "ingredients":["Chicken", "Brown Mushrooms", "Oregano", "Passata", "Onion", "Red wine", "Balsamic Vinegar"]}'
-
   componentWillUnmount() {
     localStorage.removeItem("ingredients");
     localStorage.removeItem("currentIngredient");
