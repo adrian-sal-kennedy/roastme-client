@@ -1,5 +1,6 @@
 import React, { Component} from 'react';
 import Post from '../shared/Post';
+import { Content } from 'react-bulma-components'
 
 export default class user extends Component {
     async componentDidMount() {
@@ -31,7 +32,6 @@ export default class user extends Component {
     render() {
         return (
             <div>
-                <p>user component</p>
                 {this.state?.posts &&
                     this.state?.posts.map((post, idx) => {
                     return (
