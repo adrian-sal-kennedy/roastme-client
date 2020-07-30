@@ -23,10 +23,10 @@ export default class Cookbook extends Component {
   async componentDidMount() {
     this.getRecipes();
   }
-  async getRecipes() {
+  async getRecipes(props) {
     const order = "new";
-    const limit = 20;
-    const { page } = this.state;
+    const limit = 10;
+    const { page } = props || this.state;
     const offset = (page - 1) * limit;
     // http://localhost:3000/?tag=scarlet&ingredient=Brown+Flour&limit=20&offset=0
     try {
@@ -43,7 +43,10 @@ export default class Cookbook extends Component {
         throw new Error("You must be logged in to do this!");
       } else {
         const { list, count } = await response.json();
-        this.setState({ recipesIndex: list, count: count });
+        this.setState({
+          recipesIndex: [...this.state.recipesIndex, ...list],
+          count: count,
+        });
       }
     } catch (err) {
       this.setState({
@@ -52,11 +55,11 @@ export default class Cookbook extends Component {
     }
   }
   getNextPage() {
-    const { page } = this.state;
+    const page = this.state.page + 1;
     this.setState({
-      page: page + 1,
+      page: page,
     });
-    this.getRecipes();
+    this.getRecipes({ page });
   }
   render() {
     const recipes = this.state.recipesIndex;
@@ -112,11 +115,21 @@ export default class Cookbook extends Component {
           {recipes.length > 0 &&
             recipes.map((recipe, idx) => {
               return (
-                <div className="main-component flex-tile" key={idx + 1}>
+                <div className="main-component flex-tile recipe-card" key={idx + 1}>
                   {recipes[idx] && <Card recipe={recipe} />}
                 </div>
               );
             })}
+          {recipes && recipes.length > 0 && (
+            <div
+              className="scrollcatcher"
+              onClick={this.getNextPage.bind(this)}
+            >
+              <Heading className="is-dark has-text-centered" size={2}>
+                Click here for more!
+              </Heading>
+            </div>
+          )}
         </Section>
         {/* recipe list above ^^^ | vvv footer stuff below */}
         <Section>

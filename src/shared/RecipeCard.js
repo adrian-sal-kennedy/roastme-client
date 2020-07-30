@@ -9,19 +9,21 @@ export default function RecipeCard(props) {
   const createdAt = moment(recipe.created_at).startOf("hour").fromNow();
 
   return (
-    <Box style={{ width: "100%", height: "100%" }}>
-      <Container style={{ display: "flex", flexDirection: "column" }}>
+    <Box className="recipe-card">
+      <Container
+      // style={{ display: "flex", flexDirection: "column" }}
+      >
         <Link className="fill-parent-link" to={`recipe/${recipe.id}`} />
         <Heading size={4}>{recipe.title}</Heading>
-        <Media.Item position="left">
+        <Media.Item position="center">
           <Image
-            size="16by9"
-            alt="64x64"
+            size="4by3"
+            alt="4by3"
             src={`pics/${Math.floor(Math.random() * 26)}.jpg`}
             className="image-crop-cover"
           />
         </Media.Item>
-        <Heading subtitle>{author?.username}</Heading>
+        <Heading size={6}>by {author?.username}</Heading>
         {tags && <Taglist tags={tags.map((tag) => tag.tag)} />}
         <time className="font-075rem">{`${createdAt}`}</time>
       </Container>

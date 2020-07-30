@@ -22,12 +22,11 @@ export default class Home extends Component {
   async componentDidMount() {
     this.getRecipes();
   }
-  async getRecipes() {
+  async getRecipes(props) {
     const order = "new";
-    const limit = 20;
-    const { page } = this.state;
+    const limit = 10;
+    const { page } = props || this.state;
     const offset = (page - 1) * limit;
-    // http://localhost:3000/?tag=scarlet&ingredient=Brown+Flour&limit=20&offset=0
     try {
       const response = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}?limit=${limit}&offset=${offset}&order=${order}`
@@ -36,8 +35,10 @@ export default class Home extends Component {
         throw new Error("Not logged in!");
       } else {
         const { list, count } = await response.json();
-        this.setState({ recipesIndex: list, count: count });
-        console.log(page);
+        this.setState({
+          recipesIndex: [...this.state.recipesIndex, ...list],
+          count: count,
+        });
       }
     } catch (err) {
       this.setState({
@@ -50,8 +51,7 @@ export default class Home extends Component {
     this.setState({
       page: page,
     });
-    console.log(page);
-    this.getRecipes();
+    this.getRecipes({ page });
   }
   render() {
     const recipes = this.state.recipesIndex;
@@ -72,7 +72,10 @@ export default class Home extends Component {
           {recipes &&
             recipes.map((recipe, idx) => {
               return (
-                <div className="main-component flex-tile" key={idx + 1}>
+                <div
+                  className="main-component flex-tile recipe-card"
+                  key={idx + 1}
+                >
                   {recipes[idx] && <Card recipe={recipe} />}
                 </div>
               );
