@@ -76,7 +76,7 @@ export default class NewRecipe extends Component {
       recipe: { title, blog, method },
     };
     const body2 = {
-      ingredients: { list: `${[...ingredients].join(',')}` },
+      ingredients: { list: `${[...ingredients].join(",")}` },
     };
     try {
       const response = await fetch(
@@ -107,6 +107,8 @@ export default class NewRecipe extends Component {
         );
         if (response2.status >= 400) {
           throw new Error("Couldn't store ingredients!");
+        } else {
+          this.props.history.push("/cookbook");
         }
       }
     } catch (err) {
@@ -237,26 +239,25 @@ export default class NewRecipe extends Component {
               />
             </Control>
           </Field>
-          <form onSubmit={this.onFormSubmit}>
-            {errMessage && (
-              <Message color="danger">
-                <Message.Header>Error! {errMessage}</Message.Header>
-              </Message>
-            )}
-            <Field kind="group">
-              <Control>
-                <Button
-                  type="primary"
-                  className="button is-link"
-                  style={{
-                    margin: "0.75em",
-                  }}
-                >
-                  Submit
-                </Button>
-              </Control>
-            </Field>
-          </form>
+          {errMessage && (
+            <Message color="danger">
+              <Message.Header>Error! {errMessage}</Message.Header>
+            </Message>
+          )}
+          <Field kind="group">
+            <Control>
+              <Button
+                type="primary"
+                className="button is-link"
+                onClick={this.onFormSubmit.bind(this)}
+                style={{
+                  margin: "0.75em",
+                }}
+              >
+                Submit
+              </Button>
+            </Control>
+          </Field>
         </Box>
         <Box style={{ margin: "0.25rem", flex: "0 1 58rem" }}>
           <Content
