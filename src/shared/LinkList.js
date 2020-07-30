@@ -5,11 +5,6 @@ import { Link } from "react-router-dom"; // Navbar.Link replaces this
 export default function LinkList(props) {
   return (
     <>
-      <Link className={props.className} to="/cookbook">
-        <Navbar.Link className={props.innerClassName} arrowless={true}>
-          Cookbook
-        </Navbar.Link>
-      </Link>
       <Link className={props.className} to="/recipe/new">
         <Navbar.Link className={props.innerClassName} arrowless={true}>
           New Recipe
