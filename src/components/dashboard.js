@@ -31,7 +31,6 @@ export default class dashboard extends Component {
     render() {
         return (
             <div>
-                <p>dashboard component</p>
                 {this.state?.posts &&
                     this.state.posts.map((post, idx) => {
                     return (

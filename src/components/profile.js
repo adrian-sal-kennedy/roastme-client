@@ -30,7 +30,6 @@ export default class profile extends Component {
     render() {
         return (
             <div>
-                <p>profile component</p>
                 {this.state?.posts &&
                     this.state?.posts.map((post, idx) => {
                     return (
