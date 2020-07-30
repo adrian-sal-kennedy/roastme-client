@@ -1,6 +1,6 @@
 import React, { Component} from 'react';
 import Post from '../shared/Post';
-import { Content } from 'react-bulma-components'
+// import { Content } from 'react-bulma-components'
 
 export default class user extends Component {
     async componentDidMount() {
