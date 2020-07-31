@@ -1,9 +1,9 @@
 import React from "react";
 
 export default function IngredientList(props) {
-  const { ingredients } = props;
+  const { ingredients, className } = props;
   return (
-    <div className="md">
+    <div className={className}>
       <ul>
         {ingredients.map((ingredient, idx) => {
           return <li key={idx}>{ingredient.name}</li>;

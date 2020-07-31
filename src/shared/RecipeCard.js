@@ -10,9 +10,7 @@ export default function RecipeCard(props) {
 
   return (
     <Box className="recipe-card">
-      <Container
-      // style={{ display: "flex", flexDirection: "column" }}
-      >
+      <Container>
         <Link className="fill-parent-link" to={`recipe/${recipe.id}`} />
         <Heading size={4}>{recipe.title}</Heading>
         <Media.Item position="center">

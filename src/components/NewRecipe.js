@@ -133,7 +133,7 @@ export default class NewRecipe extends Component {
       errMessage,
     } = this.state;
     return (
-      <div className="main-component flex-tile">
+      <div className="flex-tile main-component">
         <Box style={{ margin: "0.25rem", flex: "0 1 58rem" }}>
           <Heading size={3}>Create New Recipe</Heading>
           <Heading size={5}>Recipe title</Heading>
@@ -271,7 +271,7 @@ export default class NewRecipe extends Component {
           >
             Preview
           </Content>
-          <Markdown includeNodeIndex={true} className="md" source={blog} />
+          <Markdown includeNodeIndex={true} className="md text-columns rem14" source={blog} />
         </Box>
       </div>
     );

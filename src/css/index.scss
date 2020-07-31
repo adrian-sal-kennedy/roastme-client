@@ -63,31 +63,52 @@ html {
   box-shadow: 0.5rem 0.5rem 0.33rem -0.33rem rgba(black, 0.33);
   border: none;
 }
-
+.text-columns {
+  column-count: 2;
+  @include mobile {
+    column-count: 1;
+  }
+}
 .md {
-  & > h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+  & > h1,
+  & > h2,
+  & > h3,
+  & > h4,
+  & > h5 {
+    margin-bottom: 0.75em;
     font-weight: 900;
   }
+  & > h1 {
+    font-size: 2em;
+    column-span: all;
+  }
   & > h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.75rem;
-    font-weight: 600;
+    font-size: 1.5em;
+    column-span: all;
+  }
+  & > h3 {
+    font-size: 1.25em;
+  }
+  & > h4 {
+    font-size: 1.125em;
+  }
+  & > h5 {
+    font-size: 1.07em;
   }
   & > ul,
   & > ol {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.75em;
     list-style: inside disc;
-    margin-left: 1rem;
+    margin-left: 1em;
   }
   & > ol {
     list-style-type: decimal;
   }
   & > pre {
-    width: calc(100vw - 6rem);
+    width: calc(100vw - 6em);
     overflow: scroll;
   }
+  margin-bottom: 1em;
 }
 
 .login-column {
@@ -136,11 +157,22 @@ html {
   display: flex;
   flex-wrap: wrap;
 }
+.inline {
+  display: inline-flex;
+  flex-wrap: wrap;
+  & > * {
+    margin-right: 0.5rem;
+    margin-bottom: 0rem;
+  }
+}
 .flex-all {
   @extend .flex;
   & > * {
     @extend .flex;
   }
+}
+.justify-baseline {
+  align-items: baseline;
 }
 .section {
   margin: 0;
@@ -245,6 +277,18 @@ html {
 }
 .recipe-card {
   width: 100%;
-  height: 100%;
   max-width: 32rem;
+}
+.main-component {
+  min-height: 100%;
+}
+
+.rem14 {
+  font-size: 14px;
+}
+.rem12 {
+  font-size: 12px;
+}
+.rem10 {
+  font-size: 10px;
 }

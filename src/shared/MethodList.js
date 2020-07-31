@@ -6,7 +6,12 @@ export default function MethodList(props) {
     <div className="md">
       <ul>
         {Object.entries(method).map((step, idx) => {
-          return <li key={idx}>{`${step[0]}: ${step[1]}`}</li>;
+          return (
+            <li key={idx}>
+              <b>{`${step[0]}:`}</b>
+              {` ${step[1]}`}
+            </li>
+          );
         })}
       </ul>
     </div>

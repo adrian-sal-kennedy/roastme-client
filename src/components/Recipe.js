@@ -8,12 +8,12 @@ import Taglist from "../shared/TagList";
 
 // import Card from "../shared/altCard";
 function isJson(str) {
-    try {
-        JSON.parse(str);
-    } catch (e) {
-        return false;
-    }
-    return true;
+  try {
+    JSON.parse(str);
+  } catch (e) {
+    return false;
+  }
+  return true;
 }
 export default class Recipe extends Component {
   state = {
@@ -32,25 +32,34 @@ export default class Recipe extends Component {
   }
   render() {
     const { recipe, ingredients, author, tags } = this.state?.recipe;
-    const method = isJson(recipe?.method) ? JSON.parse(recipe.method) : {"bad method": recipe?.method};
+    const method = isJson(recipe?.method)
+      ? JSON.parse(recipe.method)
+      : { "bad method": recipe?.method };
     const createdAt = moment(this.state.recipe.created_at)
       .startOf("hour")
       .fromNow();
     return (
       <div className="main-component">
-        <Box style={{ margin: "1px" }}>
-          {recipe && <Heading size={3}>{recipe.title}</Heading>}
+        <Box style={{ minHeight: "100%", margin: "1px" }}>
           {recipe && (
-            <Content size="medium">
-              <Markdown>{recipe.blog}</Markdown>
-            </Content>
+            <>
+              <div className="inline justify-baseline">
+                <Heading size={3}>{recipe.title}</Heading>
+                <Content size="medium">
+                  <p>{`recipe by ${author.username}, ${createdAt}`}</p>
+                </Content>
+              </div>
+              <Content size="medium">
+                <Markdown className="md text-columns">{recipe.blog}</Markdown>
+              </Content>
+            </>
           )}
-          {recipe && <Content size="medium">{author.username}</Content>}
-          <Heading size={4}>Ingredients:</Heading>
-          {ingredients && <IngredientList ingredients={ingredients} />}
+          <Heading className="md" size={4}>
+            Ingredients:
+          </Heading>
+          {ingredients && <IngredientList className="text-columns md" ingredients={ingredients} />}
           <Heading size={4}>Method:</Heading>
           {method && <MethodList method={method} />}
-          <time>{`${createdAt}`}</time>
           <Container>
             {tags && <Taglist tags={tags.map((tag) => tag.tag)} />}
           </Container>
