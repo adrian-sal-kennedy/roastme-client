@@ -11,7 +11,7 @@ import {
 import Markdown from "react-markdown";
 import OptionList from "../shared/OptionList";
 import Taglist from "../shared/TagList";
-
+import genericFetch from "../shared/genericFetch";
 export default class NewRecipe extends Component {
   state = {
     errorMessage: "",
@@ -21,33 +21,22 @@ export default class NewRecipe extends Component {
     tags: [],
     blog: "",
   };
-  async componentDidMount() {
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/ingredients`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      );
-      if (response.status >= 400) {
-        throw new Error("Something went wrong NewRecipe.js!");
-      } else {
-        const ingredients = await response.json();
-        // ingredients && console.log(ingredients);
+
+  componentDidMount() {
+    genericFetch(
+      {
+        route: "/ingredients",
+        method: "GET",
+        auth: true,
+        errMessage: "Something went wrong NewRecipe.js!",
+      },
+      (ingredients) => {
         localStorage.setItem("ingredients", ingredients);
         this.setState({
           ingredientList: ingredients,
         });
       }
-    } catch (err) {
-      this.setState({
-        errMessage: err.message,
-      });
-    }
+    );
   }
   onInputChange = (event) => {
     try {
@@ -271,7 +260,11 @@ export default class NewRecipe extends Component {
           >
             Preview
           </Content>
-          <Markdown includeNodeIndex={true} className="md text-columns rem14" source={blog} />
+          <Markdown
+            includeNodeIndex={true}
+            className="md text-columns rem14"
+            source={blog}
+          />
         </Box>
       </div>
     );
