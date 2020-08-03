@@ -113,9 +113,9 @@ export default class NewRecipe extends Component {
       title,
     } = this.state;
     return (
-      <div className="flex-tile main-component">
-        <Box style={{ margin: "0.25rem", flex: "0 1 58rem" }}>
-          <Heading size={3}>Create New Recipe</Heading>
+      <div className="flex-tile main-component recipe-form">
+        <Box style={{ margin: "0.25rem", flex: "0 0 84vh" }}>
+          <Heading size={4}>Create New Recipe</Heading>
           <Heading size={5}>Recipe title</Heading>
           <Content
             style={{
@@ -234,7 +234,7 @@ export default class NewRecipe extends Component {
             </Control>
           </Field>
         </Box>
-        <Box style={{ margin: "0.25rem", flex: "0 1 58rem" }}>
+        <Box style={{ margin: "0.25rem", flex: "0 1 0" }}>
           <Content
             style={{
               marginTop: "-1rem",

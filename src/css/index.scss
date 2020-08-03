@@ -12,7 +12,7 @@
 @import "../../node_modules/bulma/sass/layout/section.sass";
 
 html {
-  // font-size: 16px;
+  font-size: 16px;
   // change above value to scale eeeeverything.
   // background: linear-gradient(
   //   0deg,
@@ -34,18 +34,22 @@ html {
   border-radius: 3px;
 }
 
-// .recipe-card {
-//   background-color: blanchedalmond;
-// }
+.navbar-item,
+.navbar-brand {
+  @include mobile {
+    font-size: 1.33rem;
+  }
+}
 
 .roastme {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: bold;
   text-shadow: 2px 2px rgba(black, 0.5);
 }
 
 .add-new-button {
   background-color: $success;
+  color: white;
   & > * {
     color: white;
   }
@@ -59,6 +63,9 @@ html {
   border-radius: 50%;
   right: 0;
   margin: 1rem;
+  @include mobile {
+    margin-top: 3.8rem;
+  }
   z-index: 20;
   box-shadow: 0.5rem 0.5rem 0.33rem -0.33rem rgba(black, 0.33);
   border: none;
@@ -291,4 +298,27 @@ html {
 }
 .rem10 {
   font-size: 10px;
+}
+
+.recipe-form {
+  @include mobile {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    display: flex;
+    flex-flow: column nowrap;
+    flex: 0 1 auto;
+    & > * {
+      flex: 0 1 100%;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-around;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      & > * {
+        flex: 0 1 100%;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+      }
+    }
+  }
 }

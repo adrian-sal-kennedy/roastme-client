@@ -21,7 +21,9 @@ export default function RecipeCard(props) {
             className="image-crop-cover"
           />
         </Media.Item>
-        <Heading size={6}>by {author?.username}</Heading>
+        <Heading style={{ marginTop: "0.5rem" }} size={6}>
+          by {author?.username}
+        </Heading>
         {tags && <Taglist tags={tags.map((tag) => tag.tag)} />}
         <time className="font-075rem">{`${createdAt}`}</time>
       </Container>

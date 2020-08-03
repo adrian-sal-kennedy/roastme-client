@@ -71,7 +71,7 @@ export default class Cookbook extends Component {
                 All Recipes
               </Link>
             </Tabs.Tab>
-            <Tabs.Tab active>My Cookbook</Tabs.Tab>
+            <Tabs.Tab className="navbar-item" active>My Cookbook</Tabs.Tab>
           </Tabs>
           {errMessage && (
             <Container>

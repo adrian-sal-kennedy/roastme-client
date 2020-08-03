@@ -58,15 +58,22 @@ export default class Home extends Component {
       <>
         <Section className="flex" color="black">
           <Tabs style={{ width: "100%" }}>
-            <Tabs.Tab active>All Recipes</Tabs.Tab>
+            <Tabs.Tab className="navbar-item" active>
+              All Recipes
+            </Tabs.Tab>
             <Tabs.Tab renderAs="div">
               <Link className="navbar-item" to="/cookbook">
                 My Cookbook
               </Link>
             </Tabs.Tab>
           </Tabs>
-          <Button className="add-new-button">
-            <Link to={"recipe/new"}>+</Link>
+          <Button
+            className="add-new-button"
+            onClick={(event) => {
+              this.props.history.push("recipe/new");
+            }}
+          >
+            +
           </Button>
           {recipes &&
             recipes.map((recipe, idx) => {
