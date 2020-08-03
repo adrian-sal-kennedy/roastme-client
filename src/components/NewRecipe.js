@@ -83,7 +83,7 @@ export default class NewRecipe extends Component {
               method: "POST",
               auth: true,
               body: JSON.stringify({
-                ingredients: { list: `${[...ingredients].join(",")}` },
+                ingredients: { list: `${[...ingredients]}` },
               }),
               errMessage: "Couldn't store ingredients!",
             },
@@ -134,6 +134,18 @@ export default class NewRecipe extends Component {
                 className="input-text"
                 type="text"
                 name="title"
+                id="title"
+                value={title}
+                onChange={this.onInputChange}
+              />
+            </Control>
+          </Field>
+          <Field>
+            <Control>
+              <Input
+                className="input-text"
+                type="text"
+                name="image"
                 id="title"
                 value={title}
                 onChange={this.onInputChange}
