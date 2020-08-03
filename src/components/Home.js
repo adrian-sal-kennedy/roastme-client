@@ -11,7 +11,6 @@ import {
   Tabs,
 } from "react-bulma-components";
 import { Link } from "react-router-dom";
-// import { Column } from "react-bulma-components/lib/components/columns";
 import Card from "../shared/RecipeCard";
 
 export default class Home extends Component {

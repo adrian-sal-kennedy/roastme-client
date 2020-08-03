@@ -14,14 +14,16 @@ import Taglist from "../shared/TagList";
 import genericFetch from "../shared/genericFetch";
 export default class NewRecipe extends Component {
   state = {
-    errorMessage: "",
     recipe: "",
     ingredients: [],
     ingredient: "",
     tags: [],
     blog: "",
   };
-
+  constructor(props) {
+    super(props);
+    localStorage.removeItem("errMessage");
+  }
   componentDidMount() {
     genericFetch(
       {
@@ -64,51 +66,41 @@ export default class NewRecipe extends Component {
     const body = {
       recipe: { title, blog, method },
     };
-    const body2 = {
-      ingredients: { list: `${[...ingredients].join(",")}` },
-    };
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_BACKEND_URL}/recipe`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify(body),
-        }
-      );
-      const { recipe } = await response.json();
-      if (response.status >= 400) {
-        throw new Error("Couldn't store recipe!");
-      } else {
-        const response2 = await fetch(
-          `${process.env.REACT_APP_BACKEND_URL}/ingredients/${recipe}`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${localStorage.getItem("token")}`,
+    genericFetch(
+      {
+        route: "/recipe",
+        method: "POST",
+        auth: true,
+        body: JSON.stringify(body),
+        errMessage: "Couldn't store recipe!",
+      },
+      async (recipe) => {
+        const recipeId = recipe.recipe;
+        if (recipe && recipeId !== "n/a") {
+          return genericFetch(
+            {
+              route: `/ingredients/${recipeId}`,
+              method: "POST",
+              auth: true,
+              body: JSON.stringify({
+                ingredients: { list: `${[...ingredients].join(",")}` },
+              }),
+              errMessage: "Couldn't store ingredients!",
             },
-            body: JSON.stringify(body2),
-          }
-        );
-        if (response2.status >= 400) {
-          throw new Error("Couldn't store ingredients!");
+            () => {
+              this.props.history.push("/cookbook");
+            }
+          );
         } else {
-          this.props.history.push("/cookbook");
+          localStorage.setItem("errMessage", "Couldn't store ingredients!")
         }
       }
-    } catch (err) {
-      this.setState({
-        errMessage: err.message,
-      });
-    }
+    );
   };
   componentWillUnmount() {
     localStorage.removeItem("ingredients");
     localStorage.removeItem("currentIngredient");
+    // localStorage.removeItem("errMessage");
   }
   render() {
     const { Input, Field, Control, Textarea } = Form;
@@ -119,7 +111,6 @@ export default class NewRecipe extends Component {
       ingredients,
       ingredient,
       title,
-      errMessage,
     } = this.state;
     return (
       <div className="flex-tile main-component">
@@ -182,13 +173,6 @@ export default class NewRecipe extends Component {
             </Control>
           </Field>
           <Heading size={5}>Ingredients</Heading>
-          {/* {this.state.ingredients.map((ingredient,idx) => {
-            return (
-              <div key={idx}>
-                {ingredient}
-              </div>
-            )
-          })} */}
           <Container>
             <Taglist className="font-1rem" tags={ingredients} />
           </Container>
@@ -228,9 +212,11 @@ export default class NewRecipe extends Component {
               />
             </Control>
           </Field>
-          {errMessage && (
+          {localStorage.getItem("errMessage") && (
             <Message color="danger">
-              <Message.Header>Error! {errMessage}</Message.Header>
+              <Message.Header>
+                Error! {localStorage.getItem("errMessage")}
+              </Message.Header>
             </Message>
           )}
           <Field kind="group">

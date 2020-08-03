@@ -15,7 +15,7 @@
 //   }
 // );
 
-export default async function genericFetch(props, callback) {
+const genericFetch = async (props, callback) => {
   const { route, method, auth, body, errMessage } = props;
   const request = {};
   if (method) {
@@ -42,9 +42,9 @@ export default async function genericFetch(props, callback) {
       callback(jsonResponse);
     }
   } catch (err) {
-    this.setState({
-      errMessage: err.message,
-    });
+    localStorage.setItem("errMessage", err.message);
+    return err.message;
   }
-}
+};
 
+export default genericFetch;
