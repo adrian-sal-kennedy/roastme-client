@@ -4,7 +4,7 @@ export default function MethodList(props) {
   const { method } = props;
   return (
     <div className="md">
-      <ul>
+      <ol className="keylist">
         {Object.entries(method).map((step, idx) => {
           return (
             <li key={idx}>
@@ -13,7 +13,7 @@ export default function MethodList(props) {
             </li>
           );
         })}
-      </ul>
+      </ol>
     </div>
   );
 }

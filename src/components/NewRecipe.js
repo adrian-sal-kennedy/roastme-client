@@ -83,7 +83,7 @@ export default class NewRecipe extends Component {
               method: "POST",
               auth: true,
               body: JSON.stringify({
-                ingredients: { list: `${[...ingredients]}` },
+                ingredients: { list: ingredients },
               }),
               errMessage: "Couldn't store ingredients!",
             },

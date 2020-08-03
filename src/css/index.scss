@@ -300,6 +300,10 @@ html {
   font-size: 10px;
 }
 
+.keylist {
+  list-style: none !important;
+}
+
 .recipe-form {
   @include mobile {
     margin-top: 0 !important;
